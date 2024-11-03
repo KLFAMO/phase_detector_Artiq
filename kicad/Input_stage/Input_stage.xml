@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>D:\Projekty\FAMO\LF_phase_detector\Input_stage\Input_stage.sch</source>
+    <date>20.07.2023 13:49:09</date>
+    <tool>Eeschema (5.1.12)-1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>Input_stage.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>TLV3604DCKR</value>
+      <footprint>Package_TO_SOT_SMD:SOT-363_SC-70-6</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tlv3604.pdf?ts=1689596308402&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTLV3604</datasheet>
+      <libsource lib="Comparator" part="LTC6754xSC6" description="Single High Speed Rail-to-Rail Input Comparator with LVDS Compatible Outputs, SC-70-6"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B679D0</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>10k 1%</value>
+      <footprint>ff_lib:R_0603_ff</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B69966</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>10k 1%</value>
+      <footprint>ff_lib:R_0603_ff</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B6A5C1</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>100p 50V C0G</value>
+      <footprint>Capacitors_SMD:C_0603</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B6A88F</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>10k 1%</value>
+      <footprint>ff_lib:R_0603_ff</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B72213</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>10k 1%</value>
+      <footprint>ff_lib:R_0603_ff</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B72219</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>10n 50V C0G</value>
+      <footprint>Capacitors_SMD:C_0603</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7221F</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>10n 50V C0G</value>
+      <footprint>Capacitors_SMD:C_0603</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7300C</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>10n 50V C0G</value>
+      <footprint>Capacitors_SMD:C_0603</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B737F6</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>49R9 1%</value>
+      <footprint>ff_lib:R_0603_ff</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7651F</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>100n 50V X7R</value>
+      <footprint>Capacitors_SMD:C_0603</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7B1D1</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>100p 50V C0G</value>
+      <footprint>Capacitors_SMD:C_0603</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7C772</tstamp>
+    </comp>
+    <comp ref="IN1">
+      <value>TestPoint</value>
+      <footprint>Connectors_TestPoints:Test_Point_THTPad_d1.5mm_Drill0.7mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7D014</tstamp>
+    </comp>
+    <comp ref="OUP1">
+      <value>TestPoint</value>
+      <footprint>Connectors_TestPoints:Test_Point_THTPad_d1.5mm_Drill0.7mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7DAAD</tstamp>
+    </comp>
+    <comp ref="OUM1">
+      <value>TestPoint</value>
+      <footprint>Connectors_TestPoints:Test_Point_THTPad_d1.5mm_Drill0.7mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7E24B</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>100R 1%</value>
+      <footprint>ff_lib:R_0603_ff</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B825E7</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>10u 50V X7R</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B8649A</tstamp>
+    </comp>
+    <comp ref="POW1">
+      <value>TestPoint</value>
+      <footprint>Connectors_TestPoints:Test_Point_THTPad_d1.5mm_Drill0.7mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B8846A</tstamp>
+    </comp>
+    <comp ref="GND1">
+      <value>TestPoint</value>
+      <footprint>Connectors_TestPoints:Test_Point_THTPad_d1.5mm_Drill0.7mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B8CAAB</tstamp>
+    </comp>
+    <comp ref="GND2">
+      <value>TestPoint</value>
+      <footprint>Connectors_TestPoints:Test_Point_THTPad_d1.5mm_Drill0.7mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>64B7BAF2</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Comparator" part="LTC6754xSC6">
+      <description>Single High Speed Rail-to-Rail Input Comparator with LVDS Compatible Outputs, SC-70-6</description>
+      <docs>https://www.analog.com/media/en/technical-documentation/data-sheets/6754f.pdf</docs>
+      <footprints>
+        <fp>*SC?70*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LTC6754xSC6</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-363_SC-70-6</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Q" type="output"/>
+        <pin num="2" name="VEE" type="power_in"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="-" type="input"/>
+        <pin num="5" name="VCC" type="power_in"/>
+        <pin num="6" name="~Q" type="output"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="TestPoint">
+      <description>test point</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Pin*</fp>
+        <fp>Test*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TestPoint</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Comparator">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Comparator.lib</uri>
+    </library>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Connector.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GND">
+      <node ref="C7" pin="2"/>
+      <node ref="R1" pin="2"/>
+      <node ref="GND2" pin="1"/>
+      <node ref="GND1" pin="1"/>
+      <node ref="U1" pin="2"/>
+      <node ref="R5" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="R3" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="C6" pin="2"/>
+    </net>
+    <net code="2" name="Net-(OUP1-Pad1)">
+      <node ref="U1" pin="1"/>
+      <node ref="OUP1" pin="1"/>
+      <node ref="R6" pin="1"/>
+    </net>
+    <net code="3" name="Net-(C1-Pad2)">
+      <node ref="C1" pin="2"/>
+      <node ref="IN1" pin="1"/>
+    </net>
+    <net code="4" name="Net-(C1-Pad1)">
+      <node ref="C3" pin="2"/>
+      <node ref="R1" pin="1"/>
+      <node ref="C1" pin="1"/>
+    </net>
+    <net code="5" name="VCC">
+      <node ref="R4" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="U1" pin="5"/>
+      <node ref="C6" pin="1"/>
+      <node ref="C7" pin="1"/>
+      <node ref="POW1" pin="1"/>
+      <node ref="C5" pin="1"/>
+    </net>
+    <net code="6" name="Net-(OUM1-Pad1)">
+      <node ref="U1" pin="6"/>
+      <node ref="R6" pin="2"/>
+      <node ref="OUM1" pin="1"/>
+    </net>
+    <net code="7" name="Net-(C3-Pad1)">
+      <node ref="C3" pin="1"/>
+      <node ref="U1" pin="4"/>
+      <node ref="C4" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="R4" pin="2"/>
+    </net>
+    <net code="8" name="Net-(C2-Pad1)">
+      <node ref="R2" pin="2"/>
+      <node ref="R3" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="U1" pin="3"/>
+    </net>
+  </nets>
+</export>
