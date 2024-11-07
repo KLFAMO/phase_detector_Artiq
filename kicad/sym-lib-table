@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "current100A-rescue")(type "Legacy")(uri "D:/Projekty/FAMO/current100A_v2/current100A-rescue.lib")(options "")(descr ""))
+  (lib (name "POLBER_AD9959-rescue")(type "Legacy")(uri "D:/Projekty/FAMO/POLBER_AD9959_H743V/POLBER_AD9959-rescue.lib")(options "")(descr ""))
+  (lib (name "powersc7-rescue")(type "KiCad")(uri "${KIPRJMOD}/powersc7-rescue.kicad_sym")(options "")(descr ""))
+)

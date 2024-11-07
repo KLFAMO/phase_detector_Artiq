@@ -1,0 +1,1504 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 7
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ff:TMUX1204DGSR U2
+U 1 1 6381F868
+P 2100 1200
+F 0 "U2" H 2100 1668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 2100 1575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 2450 1500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 2450 1400 50  0001 L CNN
+	1    2100 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 1400 1500 1400
+Wire Wire Line
+	1500 1400 1500 1600
+Wire Wire Line
+	1500 1600 2700 1600
+Wire Wire Line
+	2700 1600 2700 1400
+Wire Wire Line
+	2700 1400 2600 1400
+Wire Wire Line
+	2800 1400 2700 1400
+Connection ~ 2700 1400
+$Comp
+L power:+5V #PWR029
+U 1 1 6381F875
+P 2800 1400
+F 0 "#PWR029" H 2800 1250 50  0001 C CNN
+F 1 "+5V" V 2800 1600 50  0000 C CNN
+F 2 "" H 2800 1400 50  0001 C CNN
+F 3 "" H 2800 1400 50  0001 C CNN
+	1    2800 1400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR028
+U 1 1 6381F87B
+P 2800 1300
+F 0 "#PWR028" H 2800 1150 50  0001 C CNN
+F 1 "+3V3" V 2800 1400 50  0000 L CNN
+F 2 "" H 2800 1300 50  0001 C CNN
+F 3 "" H 2800 1300 50  0001 C CNN
+	1    2800 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2800 1300 2600 1300
+Wire Wire Line
+	1100 1300 1600 1300
+Text Label 1200 1300 0    50   ~ 0
+REF1_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 6381F884
+P 1000 1400
+AR Path="/61A52C79/6381F884" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/6381F884" Ref="#PWR?"  Part="1" 
+AR Path="/6381F884" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/6381F884" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/6381F884" Ref="#PWR024"  Part="1" 
+F 0 "#PWR024" H 1000 1150 50  0001 C CNN
+F 1 "GND" H 1005 1223 50  0000 C CNN
+F 2 "" H 1000 1400 50  0001 C CNN
+F 3 "" H 1000 1400 50  0001 C CNN
+	1    1000 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 1400 1000 1200
+Wire Wire Line
+	1000 1100 1600 1100
+Wire Wire Line
+	1000 1200 1600 1200
+Connection ~ 1000 1200
+Wire Wire Line
+	1000 1200 1000 1100
+Wire Wire Line
+	2600 1200 3100 1200
+Wire Wire Line
+	1100 1000 1600 1000
+Wire Wire Line
+	2600 1000 3100 1000
+Wire Wire Line
+	2600 1100 3100 1100
+$Comp
+L Device:C C?
+U 1 1 6381F89D
+P 2150 3900
+AR Path="/61A52C79/6381F89D" Ref="C?"  Part="1" 
+AR Path="/61C2E805/6381F89D" Ref="C?"  Part="1" 
+AR Path="/61A73B5E/6381F89D" Ref="C?"  Part="1" 
+AR Path="/6235E293/61A73B5E/6381F89D" Ref="C?"  Part="1" 
+AR Path="/63BDCAAB/6381F89D" Ref="C?"  Part="1" 
+AR Path="/6381F89D" Ref="C?"  Part="1" 
+AR Path="/6364DDE6/6381F89D" Ref="C?"  Part="1" 
+AR Path="/63650C2C/6381F89D" Ref="C?"  Part="1" 
+AR Path="/637826B2/6381F89D" Ref="C23"  Part="1" 
+F 0 "C23" V 2000 3900 50  0000 C CNN
+F 1 "100n 50V X7R" V 2300 3900 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0603" H 2188 3750 50  0001 C CNN
+F 3 "~" H 2150 3900 50  0001 C CNN
+	1    2150 3900
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	2400 3900 2300 3900
+$Comp
+L power:GND #PWR?
+U 1 1 6381F8A4
+P 2400 3900
+AR Path="/61A52C79/6381F8A4" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/6381F8A4" Ref="#PWR?"  Part="1" 
+AR Path="/6381F8A4" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/6381F8A4" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/6381F8A4" Ref="#PWR027"  Part="1" 
+F 0 "#PWR027" H 2400 3650 50  0001 C CNN
+F 1 "GND" H 2405 3723 50  0000 C CNN
+F 2 "" H 2400 3900 50  0001 C CNN
+F 3 "" H 2400 3900 50  0001 C CNN
+	1    2400 3900
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	1500 3900 2000 3900
+Text Label 1600 3900 0    50   ~ 0
+REF1_1:3
+$Comp
+L ff:TMUX1204DGSR U3
+U 1 1 6381F8AC
+P 2100 2200
+F 0 "U3" H 2100 2668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 2100 2575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 2450 2500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 2450 2400 50  0001 L CNN
+	1    2100 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 2400 1500 2400
+Wire Wire Line
+	1500 2400 1500 2600
+Wire Wire Line
+	1500 2600 2700 2600
+Wire Wire Line
+	2700 2600 2700 2400
+Wire Wire Line
+	2700 2400 2600 2400
+Wire Wire Line
+	2800 2400 2700 2400
+Connection ~ 2700 2400
+$Comp
+L power:+5V #PWR031
+U 1 1 6381F8B9
+P 2800 2400
+F 0 "#PWR031" H 2800 2250 50  0001 C CNN
+F 1 "+5V" V 2800 2600 50  0000 C CNN
+F 2 "" H 2800 2400 50  0001 C CNN
+F 3 "" H 2800 2400 50  0001 C CNN
+	1    2800 2400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR030
+U 1 1 6381F8BF
+P 2800 2300
+F 0 "#PWR030" H 2800 2150 50  0001 C CNN
+F 1 "+3V3" V 2800 2400 50  0000 L CNN
+F 2 "" H 2800 2300 50  0001 C CNN
+F 3 "" H 2800 2300 50  0001 C CNN
+	1    2800 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2800 2300 2600 2300
+Wire Wire Line
+	1100 2300 1600 2300
+Text Label 1200 2300 0    50   ~ 0
+REF1_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 6381F8C8
+P 1000 2400
+AR Path="/61A52C79/6381F8C8" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/6381F8C8" Ref="#PWR?"  Part="1" 
+AR Path="/6381F8C8" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/6381F8C8" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/6381F8C8" Ref="#PWR025"  Part="1" 
+F 0 "#PWR025" H 1000 2150 50  0001 C CNN
+F 1 "GND" H 1005 2223 50  0000 C CNN
+F 2 "" H 1000 2400 50  0001 C CNN
+F 3 "" H 1000 2400 50  0001 C CNN
+	1    1000 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 2400 1000 2200
+Wire Wire Line
+	1000 2100 1600 2100
+Wire Wire Line
+	1000 2200 1600 2200
+Connection ~ 1000 2200
+Wire Wire Line
+	1000 2200 1000 2100
+Wire Wire Line
+	2600 2200 3100 2200
+Wire Wire Line
+	1100 2000 1600 2000
+Wire Wire Line
+	2600 2000 3100 2000
+Wire Wire Line
+	2600 2100 3100 2100
+Text Label 2700 2100 0    50   ~ 0
+REF1_1:3
+$Comp
+L ff:TMUX1204DGSR U4
+U 1 1 6381F8D8
+P 2100 3200
+F 0 "U4" H 2100 3668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 2100 3575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 2450 3500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 2450 3400 50  0001 L CNN
+	1    2100 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 3400 1500 3400
+Wire Wire Line
+	1500 3400 1500 3600
+Wire Wire Line
+	1500 3600 2700 3600
+Wire Wire Line
+	2700 3600 2700 3400
+Wire Wire Line
+	2700 3400 2600 3400
+Wire Wire Line
+	2800 3400 2700 3400
+Connection ~ 2700 3400
+$Comp
+L power:+5V #PWR033
+U 1 1 6381F8E5
+P 2800 3400
+F 0 "#PWR033" H 2800 3250 50  0001 C CNN
+F 1 "+5V" V 2800 3600 50  0000 C CNN
+F 2 "" H 2800 3400 50  0001 C CNN
+F 3 "" H 2800 3400 50  0001 C CNN
+	1    2800 3400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR032
+U 1 1 6381F8EB
+P 2800 3300
+F 0 "#PWR032" H 2800 3150 50  0001 C CNN
+F 1 "+3V3" V 2800 3400 50  0000 L CNN
+F 2 "" H 2800 3300 50  0001 C CNN
+F 3 "" H 2800 3300 50  0001 C CNN
+	1    2800 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2800 3300 2600 3300
+Wire Wire Line
+	1100 3300 1600 3300
+Text Label 1200 3300 0    50   ~ 0
+REF1_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 6381F8F4
+P 1000 3400
+AR Path="/61A52C79/6381F8F4" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/6381F8F4" Ref="#PWR?"  Part="1" 
+AR Path="/6381F8F4" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/6381F8F4" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/6381F8F4" Ref="#PWR026"  Part="1" 
+F 0 "#PWR026" H 1000 3150 50  0001 C CNN
+F 1 "GND" H 1005 3223 50  0000 C CNN
+F 2 "" H 1000 3400 50  0001 C CNN
+F 3 "" H 1000 3400 50  0001 C CNN
+	1    1000 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 3400 1000 3200
+Wire Wire Line
+	1000 3100 1600 3100
+Wire Wire Line
+	1000 3200 1600 3200
+Connection ~ 1000 3200
+Wire Wire Line
+	1000 3200 1000 3100
+Wire Wire Line
+	2600 3200 3100 3200
+Wire Wire Line
+	1100 3000 1600 3000
+Wire Wire Line
+	2600 3000 3100 3000
+Wire Wire Line
+	2600 3100 3100 3100
+Text Label 2700 3100 0    50   ~ 0
+REF1_1:3
+Wire Wire Line
+	1200 3700 1100 3700
+Wire Wire Line
+	1100 3700 1100 3300
+Text GLabel 3100 1200 2    50   Input ~ 0
+S1_2
+Text GLabel 3100 2200 2    50   Input ~ 0
+S1_3
+Text GLabel 3100 3200 2    50   Input ~ 0
+S1_4
+Text GLabel 5600 1200 2    50   Input ~ 0
+S1_5
+Text GLabel 5600 2200 2    50   Input ~ 0
+S1_6
+Text GLabel 5600 3200 2    50   Input ~ 0
+S1_7
+Text GLabel 8100 1200 2    50   Input ~ 0
+S2_2
+Text GLabel 8100 2200 2    50   Input ~ 0
+S2_3
+Text GLabel 8100 3200 2    50   Input ~ 0
+S2_4
+Text GLabel 10600 1200 2    50   Input ~ 0
+S2_5
+Text GLabel 10600 2200 2    50   Input ~ 0
+S2_6
+Text GLabel 10600 3200 2    50   Input ~ 0
+S2_7
+Text GLabel 1200 3700 2    50   Input ~ 0
+REF123
+Text Label 2700 1100 0    50   ~ 0
+REF1_1:3
+$Comp
+L ff:TMUX1204DGSR U5
+U 1 1 63C296ED
+P 4600 1200
+F 0 "U5" H 4600 1668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 4600 1575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 4950 1500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 4950 1400 50  0001 L CNN
+	1    4600 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 1400 4000 1400
+Wire Wire Line
+	4000 1400 4000 1600
+Wire Wire Line
+	4000 1600 5200 1600
+Wire Wire Line
+	5200 1600 5200 1400
+Wire Wire Line
+	5200 1400 5100 1400
+Wire Wire Line
+	5300 1400 5200 1400
+Connection ~ 5200 1400
+$Comp
+L power:+5V #PWR039
+U 1 1 63C296FA
+P 5300 1400
+F 0 "#PWR039" H 5300 1250 50  0001 C CNN
+F 1 "+5V" V 5300 1600 50  0000 C CNN
+F 2 "" H 5300 1400 50  0001 C CNN
+F 3 "" H 5300 1400 50  0001 C CNN
+	1    5300 1400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR038
+U 1 1 63C29700
+P 5300 1300
+F 0 "#PWR038" H 5300 1150 50  0001 C CNN
+F 1 "+3V3" V 5300 1400 50  0000 L CNN
+F 2 "" H 5300 1300 50  0001 C CNN
+F 3 "" H 5300 1300 50  0001 C CNN
+	1    5300 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 1300 5100 1300
+Wire Wire Line
+	3600 1300 4100 1300
+Text Label 3700 1300 0    50   ~ 0
+REF1_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C29709
+P 3500 1400
+AR Path="/61A52C79/63C29709" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C29709" Ref="#PWR?"  Part="1" 
+AR Path="/63C29709" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C29709" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C29709" Ref="#PWR034"  Part="1" 
+F 0 "#PWR034" H 3500 1150 50  0001 C CNN
+F 1 "GND" H 3505 1223 50  0000 C CNN
+F 2 "" H 3500 1400 50  0001 C CNN
+F 3 "" H 3500 1400 50  0001 C CNN
+	1    3500 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 1400 3500 1200
+Wire Wire Line
+	3500 1100 4100 1100
+Wire Wire Line
+	3500 1200 4100 1200
+Connection ~ 3500 1200
+Wire Wire Line
+	3500 1200 3500 1100
+Wire Wire Line
+	5100 1200 5600 1200
+Wire Wire Line
+	3600 1000 4100 1000
+Wire Wire Line
+	5100 1000 5600 1000
+Wire Wire Line
+	5100 1100 5600 1100
+$Comp
+L ff:TMUX1204DGSR U6
+U 1 1 63C2972D
+P 4600 2200
+F 0 "U6" H 4600 2668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 4600 2575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 4950 2500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 4950 2400 50  0001 L CNN
+	1    4600 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 2400 4000 2400
+Wire Wire Line
+	4000 2400 4000 2600
+Wire Wire Line
+	4000 2600 5200 2600
+Wire Wire Line
+	5200 2600 5200 2400
+Wire Wire Line
+	5200 2400 5100 2400
+Wire Wire Line
+	5300 2400 5200 2400
+Connection ~ 5200 2400
+$Comp
+L power:+5V #PWR041
+U 1 1 63C2973A
+P 5300 2400
+F 0 "#PWR041" H 5300 2250 50  0001 C CNN
+F 1 "+5V" V 5300 2600 50  0000 C CNN
+F 2 "" H 5300 2400 50  0001 C CNN
+F 3 "" H 5300 2400 50  0001 C CNN
+	1    5300 2400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR040
+U 1 1 63C29740
+P 5300 2300
+F 0 "#PWR040" H 5300 2150 50  0001 C CNN
+F 1 "+3V3" V 5300 2400 50  0000 L CNN
+F 2 "" H 5300 2300 50  0001 C CNN
+F 3 "" H 5300 2300 50  0001 C CNN
+	1    5300 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 2300 5100 2300
+Wire Wire Line
+	3600 2300 4100 2300
+Text Label 3700 2300 0    50   ~ 0
+REF1_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C29749
+P 3500 2400
+AR Path="/61A52C79/63C29749" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C29749" Ref="#PWR?"  Part="1" 
+AR Path="/63C29749" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C29749" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C29749" Ref="#PWR035"  Part="1" 
+F 0 "#PWR035" H 3500 2150 50  0001 C CNN
+F 1 "GND" H 3505 2223 50  0000 C CNN
+F 2 "" H 3500 2400 50  0001 C CNN
+F 3 "" H 3500 2400 50  0001 C CNN
+	1    3500 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 2400 3500 2200
+Wire Wire Line
+	3500 2100 4100 2100
+Wire Wire Line
+	3500 2200 4100 2200
+Connection ~ 3500 2200
+Wire Wire Line
+	3500 2200 3500 2100
+Wire Wire Line
+	5100 2200 5600 2200
+Wire Wire Line
+	3600 2000 4100 2000
+Wire Wire Line
+	5100 2000 5600 2000
+Wire Wire Line
+	5100 2100 5600 2100
+Text Label 5200 2100 0    50   ~ 0
+REF1_1:3
+$Comp
+L ff:TMUX1204DGSR U7
+U 1 1 63C29759
+P 4600 3200
+F 0 "U7" H 4600 3668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 4600 3575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 4950 3500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 4950 3400 50  0001 L CNN
+	1    4600 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 3400 4000 3400
+Wire Wire Line
+	4000 3400 4000 3600
+Wire Wire Line
+	4000 3600 5200 3600
+Wire Wire Line
+	5200 3600 5200 3400
+Wire Wire Line
+	5200 3400 5100 3400
+Wire Wire Line
+	5300 3400 5200 3400
+Connection ~ 5200 3400
+$Comp
+L power:+5V #PWR043
+U 1 1 63C29766
+P 5300 3400
+F 0 "#PWR043" H 5300 3250 50  0001 C CNN
+F 1 "+5V" V 5300 3600 50  0000 C CNN
+F 2 "" H 5300 3400 50  0001 C CNN
+F 3 "" H 5300 3400 50  0001 C CNN
+	1    5300 3400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR042
+U 1 1 63C2976C
+P 5300 3300
+F 0 "#PWR042" H 5300 3150 50  0001 C CNN
+F 1 "+3V3" V 5300 3400 50  0000 L CNN
+F 2 "" H 5300 3300 50  0001 C CNN
+F 3 "" H 5300 3300 50  0001 C CNN
+	1    5300 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 3300 5100 3300
+Wire Wire Line
+	3600 3300 4100 3300
+Text Label 3700 3300 0    50   ~ 0
+REF1_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C29775
+P 3500 3400
+AR Path="/61A52C79/63C29775" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C29775" Ref="#PWR?"  Part="1" 
+AR Path="/63C29775" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C29775" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C29775" Ref="#PWR036"  Part="1" 
+F 0 "#PWR036" H 3500 3150 50  0001 C CNN
+F 1 "GND" H 3505 3223 50  0000 C CNN
+F 2 "" H 3500 3400 50  0001 C CNN
+F 3 "" H 3500 3400 50  0001 C CNN
+	1    3500 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 3400 3500 3200
+Wire Wire Line
+	3500 3100 4100 3100
+Wire Wire Line
+	3500 3200 4100 3200
+Connection ~ 3500 3200
+Wire Wire Line
+	3500 3200 3500 3100
+Wire Wire Line
+	5100 3200 5600 3200
+Wire Wire Line
+	3600 3000 4100 3000
+Wire Wire Line
+	5100 3000 5600 3000
+Wire Wire Line
+	5100 3100 5600 3100
+Text Label 5200 3100 0    50   ~ 0
+REF1_1:3
+Text Label 5200 1100 0    50   ~ 0
+REF1_1:3
+$Comp
+L ff:TMUX1204DGSR U8
+U 1 1 63C64FBD
+P 7100 1200
+F 0 "U8" H 7100 1668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 7100 1575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 7450 1500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 7450 1400 50  0001 L CNN
+	1    7100 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 1400 6500 1400
+Wire Wire Line
+	6500 1400 6500 1600
+Wire Wire Line
+	6500 1600 7700 1600
+Wire Wire Line
+	7700 1600 7700 1400
+Wire Wire Line
+	7700 1400 7600 1400
+Wire Wire Line
+	7800 1400 7700 1400
+Connection ~ 7700 1400
+$Comp
+L power:+5V #PWR048
+U 1 1 63C64FCA
+P 7800 1400
+F 0 "#PWR048" H 7800 1250 50  0001 C CNN
+F 1 "+5V" V 7800 1600 50  0000 C CNN
+F 2 "" H 7800 1400 50  0001 C CNN
+F 3 "" H 7800 1400 50  0001 C CNN
+	1    7800 1400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR047
+U 1 1 63C64FD0
+P 7800 1300
+F 0 "#PWR047" H 7800 1150 50  0001 C CNN
+F 1 "+3V3" V 7800 1400 50  0000 L CNN
+F 2 "" H 7800 1300 50  0001 C CNN
+F 3 "" H 7800 1300 50  0001 C CNN
+	1    7800 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7800 1300 7600 1300
+Wire Wire Line
+	6100 1300 6600 1300
+Text Label 6200 1300 0    50   ~ 0
+REF2_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C64FD9
+P 6000 1400
+AR Path="/61A52C79/63C64FD9" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C64FD9" Ref="#PWR?"  Part="1" 
+AR Path="/63C64FD9" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C64FD9" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C64FD9" Ref="#PWR044"  Part="1" 
+F 0 "#PWR044" H 6000 1150 50  0001 C CNN
+F 1 "GND" H 6005 1223 50  0000 C CNN
+F 2 "" H 6000 1400 50  0001 C CNN
+F 3 "" H 6000 1400 50  0001 C CNN
+	1    6000 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 1400 6000 1200
+Wire Wire Line
+	6000 1100 6600 1100
+Wire Wire Line
+	6000 1200 6600 1200
+Connection ~ 6000 1200
+Wire Wire Line
+	6000 1200 6000 1100
+Wire Wire Line
+	7600 1200 8100 1200
+Wire Wire Line
+	6100 1000 6600 1000
+Wire Wire Line
+	7600 1000 8100 1000
+Wire Wire Line
+	7600 1100 8100 1100
+$Comp
+L ff:TMUX1204DGSR U9
+U 1 1 63C64FFD
+P 7100 2200
+F 0 "U9" H 7100 2668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 7100 2575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 7450 2500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 7450 2400 50  0001 L CNN
+	1    7100 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 2400 6500 2400
+Wire Wire Line
+	6500 2400 6500 2600
+Wire Wire Line
+	6500 2600 7700 2600
+Wire Wire Line
+	7700 2600 7700 2400
+Wire Wire Line
+	7700 2400 7600 2400
+Wire Wire Line
+	7800 2400 7700 2400
+Connection ~ 7700 2400
+$Comp
+L power:+5V #PWR050
+U 1 1 63C6500A
+P 7800 2400
+F 0 "#PWR050" H 7800 2250 50  0001 C CNN
+F 1 "+5V" V 7800 2600 50  0000 C CNN
+F 2 "" H 7800 2400 50  0001 C CNN
+F 3 "" H 7800 2400 50  0001 C CNN
+	1    7800 2400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR049
+U 1 1 63C65010
+P 7800 2300
+F 0 "#PWR049" H 7800 2150 50  0001 C CNN
+F 1 "+3V3" V 7800 2400 50  0000 L CNN
+F 2 "" H 7800 2300 50  0001 C CNN
+F 3 "" H 7800 2300 50  0001 C CNN
+	1    7800 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7800 2300 7600 2300
+Wire Wire Line
+	6100 2300 6600 2300
+Text Label 6200 2300 0    50   ~ 0
+REF2_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C65019
+P 6000 2400
+AR Path="/61A52C79/63C65019" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C65019" Ref="#PWR?"  Part="1" 
+AR Path="/63C65019" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C65019" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C65019" Ref="#PWR045"  Part="1" 
+F 0 "#PWR045" H 6000 2150 50  0001 C CNN
+F 1 "GND" H 6005 2223 50  0000 C CNN
+F 2 "" H 6000 2400 50  0001 C CNN
+F 3 "" H 6000 2400 50  0001 C CNN
+	1    6000 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 2400 6000 2200
+Wire Wire Line
+	6000 2100 6600 2100
+Wire Wire Line
+	6000 2200 6600 2200
+Connection ~ 6000 2200
+Wire Wire Line
+	6000 2200 6000 2100
+Wire Wire Line
+	7600 2200 8100 2200
+Wire Wire Line
+	6100 2000 6600 2000
+Wire Wire Line
+	7600 2000 8100 2000
+Wire Wire Line
+	7600 2100 8100 2100
+Text Label 7700 2100 0    50   ~ 0
+REF2_1:3
+$Comp
+L ff:TMUX1204DGSR U10
+U 1 1 63C65029
+P 7100 3200
+F 0 "U10" H 7100 3668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 7100 3575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 7450 3500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 7450 3400 50  0001 L CNN
+	1    7100 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 3400 6500 3400
+Wire Wire Line
+	6500 3400 6500 3600
+Wire Wire Line
+	6500 3600 7700 3600
+Wire Wire Line
+	7700 3600 7700 3400
+Wire Wire Line
+	7700 3400 7600 3400
+Wire Wire Line
+	7800 3400 7700 3400
+Connection ~ 7700 3400
+$Comp
+L power:+5V #PWR052
+U 1 1 63C65036
+P 7800 3400
+F 0 "#PWR052" H 7800 3250 50  0001 C CNN
+F 1 "+5V" V 7800 3600 50  0000 C CNN
+F 2 "" H 7800 3400 50  0001 C CNN
+F 3 "" H 7800 3400 50  0001 C CNN
+	1    7800 3400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR051
+U 1 1 63C6503C
+P 7800 3300
+F 0 "#PWR051" H 7800 3150 50  0001 C CNN
+F 1 "+3V3" V 7800 3400 50  0000 L CNN
+F 2 "" H 7800 3300 50  0001 C CNN
+F 3 "" H 7800 3300 50  0001 C CNN
+	1    7800 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7800 3300 7600 3300
+Wire Wire Line
+	6100 3300 6600 3300
+Text Label 6200 3300 0    50   ~ 0
+REF2_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C65045
+P 6000 3400
+AR Path="/61A52C79/63C65045" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C65045" Ref="#PWR?"  Part="1" 
+AR Path="/63C65045" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C65045" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C65045" Ref="#PWR046"  Part="1" 
+F 0 "#PWR046" H 6000 3150 50  0001 C CNN
+F 1 "GND" H 6005 3223 50  0000 C CNN
+F 2 "" H 6000 3400 50  0001 C CNN
+F 3 "" H 6000 3400 50  0001 C CNN
+	1    6000 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 3400 6000 3200
+Wire Wire Line
+	6000 3100 6600 3100
+Wire Wire Line
+	6000 3200 6600 3200
+Connection ~ 6000 3200
+Wire Wire Line
+	6000 3200 6000 3100
+Wire Wire Line
+	7600 3200 8100 3200
+Wire Wire Line
+	6100 3000 6600 3000
+Wire Wire Line
+	7600 3000 8100 3000
+Wire Wire Line
+	7600 3100 8100 3100
+Text Label 7700 3100 0    50   ~ 0
+REF2_1:3
+Text Label 7700 1100 0    50   ~ 0
+REF2_1:3
+$Comp
+L ff:TMUX1204DGSR U11
+U 1 1 63C7B8D0
+P 9600 1200
+F 0 "U11" H 9600 1668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 9600 1575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 9950 1500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 9950 1400 50  0001 L CNN
+	1    9600 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 1400 9000 1400
+Wire Wire Line
+	9000 1400 9000 1600
+Wire Wire Line
+	9000 1600 10200 1600
+Wire Wire Line
+	10200 1600 10200 1400
+Wire Wire Line
+	10200 1400 10100 1400
+Wire Wire Line
+	10300 1400 10200 1400
+Connection ~ 10200 1400
+$Comp
+L power:+5V #PWR057
+U 1 1 63C7B8DD
+P 10300 1400
+F 0 "#PWR057" H 10300 1250 50  0001 C CNN
+F 1 "+5V" V 10300 1600 50  0000 C CNN
+F 2 "" H 10300 1400 50  0001 C CNN
+F 3 "" H 10300 1400 50  0001 C CNN
+	1    10300 1400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR056
+U 1 1 63C7B8E3
+P 10300 1300
+F 0 "#PWR056" H 10300 1150 50  0001 C CNN
+F 1 "+3V3" V 10300 1400 50  0000 L CNN
+F 2 "" H 10300 1300 50  0001 C CNN
+F 3 "" H 10300 1300 50  0001 C CNN
+	1    10300 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	10300 1300 10100 1300
+Wire Wire Line
+	8600 1300 9100 1300
+Text Label 8700 1300 0    50   ~ 0
+REF2_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C7B8EC
+P 8500 1400
+AR Path="/61A52C79/63C7B8EC" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C7B8EC" Ref="#PWR?"  Part="1" 
+AR Path="/63C7B8EC" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C7B8EC" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C7B8EC" Ref="#PWR053"  Part="1" 
+F 0 "#PWR053" H 8500 1150 50  0001 C CNN
+F 1 "GND" H 8505 1223 50  0000 C CNN
+F 2 "" H 8500 1400 50  0001 C CNN
+F 3 "" H 8500 1400 50  0001 C CNN
+	1    8500 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 1400 8500 1200
+Wire Wire Line
+	8500 1100 9100 1100
+Wire Wire Line
+	8500 1200 9100 1200
+Connection ~ 8500 1200
+Wire Wire Line
+	8500 1200 8500 1100
+Wire Wire Line
+	10100 1200 10600 1200
+Wire Wire Line
+	8600 1000 9100 1000
+Wire Wire Line
+	10100 1000 10600 1000
+Wire Wire Line
+	10100 1100 10600 1100
+$Comp
+L ff:TMUX1204DGSR U12
+U 1 1 63C7B910
+P 9600 2200
+F 0 "U12" H 9600 2668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 9600 2575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 9950 2500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 9950 2400 50  0001 L CNN
+	1    9600 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 2400 9000 2400
+Wire Wire Line
+	9000 2400 9000 2600
+Wire Wire Line
+	9000 2600 10200 2600
+Wire Wire Line
+	10200 2600 10200 2400
+Wire Wire Line
+	10200 2400 10100 2400
+Wire Wire Line
+	10300 2400 10200 2400
+Connection ~ 10200 2400
+$Comp
+L power:+5V #PWR059
+U 1 1 63C7B91D
+P 10300 2400
+F 0 "#PWR059" H 10300 2250 50  0001 C CNN
+F 1 "+5V" V 10300 2600 50  0000 C CNN
+F 2 "" H 10300 2400 50  0001 C CNN
+F 3 "" H 10300 2400 50  0001 C CNN
+	1    10300 2400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR058
+U 1 1 63C7B923
+P 10300 2300
+F 0 "#PWR058" H 10300 2150 50  0001 C CNN
+F 1 "+3V3" V 10300 2400 50  0000 L CNN
+F 2 "" H 10300 2300 50  0001 C CNN
+F 3 "" H 10300 2300 50  0001 C CNN
+	1    10300 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	10300 2300 10100 2300
+Wire Wire Line
+	8600 2300 9100 2300
+Text Label 8700 2300 0    50   ~ 0
+REF2_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C7B92C
+P 8500 2400
+AR Path="/61A52C79/63C7B92C" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C7B92C" Ref="#PWR?"  Part="1" 
+AR Path="/63C7B92C" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C7B92C" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C7B92C" Ref="#PWR054"  Part="1" 
+F 0 "#PWR054" H 8500 2150 50  0001 C CNN
+F 1 "GND" H 8505 2223 50  0000 C CNN
+F 2 "" H 8500 2400 50  0001 C CNN
+F 3 "" H 8500 2400 50  0001 C CNN
+	1    8500 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 2400 8500 2200
+Wire Wire Line
+	8500 2100 9100 2100
+Wire Wire Line
+	8500 2200 9100 2200
+Connection ~ 8500 2200
+Wire Wire Line
+	8500 2200 8500 2100
+Wire Wire Line
+	10100 2200 10600 2200
+Wire Wire Line
+	8600 2000 9100 2000
+Wire Wire Line
+	10100 2000 10600 2000
+Wire Wire Line
+	10100 2100 10600 2100
+Text Label 10200 2100 0    50   ~ 0
+REF2_1:3
+$Comp
+L ff:TMUX1204DGSR U13
+U 1 1 63C7B93C
+P 9600 3200
+F 0 "U13" H 9600 3668 50  0000 C CNN
+F 1 "TMUX1204DGSR" H 9600 3575 50  0000 C CNN
+F 2 "Package_SO:VSSOP-10_3x3mm_P0.5mm" H 9950 3500 50  0001 L CNN
+F 3 "https://www.ti.com/lit/gpn/TMUX1204" H 9950 3400 50  0001 L CNN
+	1    9600 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 3400 9000 3400
+Wire Wire Line
+	9000 3400 9000 3600
+Wire Wire Line
+	9000 3600 10200 3600
+Wire Wire Line
+	10200 3600 10200 3400
+Wire Wire Line
+	10200 3400 10100 3400
+Wire Wire Line
+	10300 3400 10200 3400
+Connection ~ 10200 3400
+$Comp
+L power:+5V #PWR061
+U 1 1 63C7B949
+P 10300 3400
+F 0 "#PWR061" H 10300 3250 50  0001 C CNN
+F 1 "+5V" V 10300 3600 50  0000 C CNN
+F 2 "" H 10300 3400 50  0001 C CNN
+F 3 "" H 10300 3400 50  0001 C CNN
+	1    10300 3400
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR060
+U 1 1 63C7B94F
+P 10300 3300
+F 0 "#PWR060" H 10300 3150 50  0001 C CNN
+F 1 "+3V3" V 10300 3400 50  0000 L CNN
+F 2 "" H 10300 3300 50  0001 C CNN
+F 3 "" H 10300 3300 50  0001 C CNN
+	1    10300 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	10300 3300 10100 3300
+Wire Wire Line
+	8600 3300 9100 3300
+Text Label 8700 3300 0    50   ~ 0
+REF2_2:3
+$Comp
+L power:GND #PWR?
+U 1 1 63C7B958
+P 8500 3400
+AR Path="/61A52C79/63C7B958" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63C7B958" Ref="#PWR?"  Part="1" 
+AR Path="/63C7B958" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63C7B958" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63C7B958" Ref="#PWR055"  Part="1" 
+F 0 "#PWR055" H 8500 3150 50  0001 C CNN
+F 1 "GND" H 8505 3223 50  0000 C CNN
+F 2 "" H 8500 3400 50  0001 C CNN
+F 3 "" H 8500 3400 50  0001 C CNN
+	1    8500 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 3400 8500 3200
+Wire Wire Line
+	8500 3100 9100 3100
+Wire Wire Line
+	8500 3200 9100 3200
+Connection ~ 8500 3200
+Wire Wire Line
+	8500 3200 8500 3100
+Wire Wire Line
+	10100 3200 10600 3200
+Wire Wire Line
+	8600 3000 9100 3000
+Wire Wire Line
+	10100 3000 10600 3000
+Wire Wire Line
+	10100 3100 10600 3100
+Text Label 10200 3100 0    50   ~ 0
+REF2_1:3
+Text Label 10200 1100 0    50   ~ 0
+REF2_1:3
+Text GLabel 8100 5300 0    50   Output ~ 0
+CEN
+Text GLabel 10800 4300 2    50   Output ~ 0
+SCK
+Text GLabel 10700 5700 2    50   Output ~ 0
+MOSI
+Text GLabel 8100 5100 0    50   Input ~ 0
+MISO
+Text GLabel 8100 5000 0    50   Output ~ 0
+NSS
+Text GLabel 10700 5800 2    50   BiDi ~ 0
+LD-D0
+Text GLabel 8100 4900 0    50   Input ~ 0
+REFEN
+Text GLabel 8100 4200 0    50   Input ~ 0
+DNSAT
+Text GLabel 8100 4300 0    50   Input ~ 0
+UPSAT
+Text GLabel 7300 5100 2    50   Output ~ 0
+SYNCB
+$Comp
+L ff:NUCLEO-H743ZI2 M?
+U 4 1 6383409E
+P 6000 5100
+AR Path="/5E8EE823/6383409E" Ref="M?"  Part="4" 
+AR Path="/5E8EE823/5EB59A8C/6383409E" Ref="M?"  Part="4" 
+AR Path="/5F945AE2/5FF9001B/5EB59A8C/6383409E" Ref="M?"  Part="4" 
+AR Path="/5F945AE2/6383409E" Ref="M?"  Part="4" 
+AR Path="/6383409E" Ref="M?"  Part="4" 
+AR Path="/601A53E0/6383409E" Ref="M?"  Part="4" 
+AR Path="/61D99045/5F945AE2/6383409E" Ref="M?"  Part="4" 
+AR Path="/63BDCA93/63B54412/5F945AE2/6383409E" Ref="M?"  Part="4" 
+AR Path="/6382225E/5F945AE2/6383409E" Ref="M?"  Part="4" 
+AR Path="/637826B2/6383409E" Ref="M1"  Part="4" 
+F 0 "M1" H 6000 6270 50  0000 C CNN
+F 1 "NUCLEO-H743ZI" H 6000 6177 50  0000 C CNN
+F 2 "ff_lib:MODULE_NUCLEO-F746ZG_mini_M" H 6000 5100 50  0001 L BNN
+F 3 "STMicroelectronics" H 6000 5100 50  0001 L BNN
+F 4 "po1:DS1023-2*8S21,DS1023-2*10S21,DS1023-2*16S21,DS1023-2*17S21" H 6000 5100 50  0001 C CNN "Comm"
+	4    6000 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L ff:NUCLEO-H743ZI2 M?
+U 5 1 638340CB
+P 2500 5300
+AR Path="/5E8EE823/638340CB" Ref="M?"  Part="5" 
+AR Path="/5E8EE823/5EB59A8C/638340CB" Ref="M?"  Part="5" 
+AR Path="/5F945AE2/5FF9001B/5EB59A8C/638340CB" Ref="M?"  Part="5" 
+AR Path="/5F945AE2/638340CB" Ref="M?"  Part="5" 
+AR Path="/638340CB" Ref="M?"  Part="5" 
+AR Path="/601A53E0/638340CB" Ref="M?"  Part="5" 
+AR Path="/61D99045/5F945AE2/638340CB" Ref="M?"  Part="5" 
+AR Path="/63BDCA93/63B54412/5F945AE2/638340CB" Ref="M?"  Part="5" 
+AR Path="/6382225E/5F945AE2/638340CB" Ref="M?"  Part="5" 
+AR Path="/637826B2/638340CB" Ref="M1"  Part="5" 
+F 0 "M1" H 2500 6270 50  0000 C CNN
+F 1 "NUCLEO-H743ZI" H 2500 6177 50  0000 C CNN
+F 2 "ff_lib:MODULE_NUCLEO-F746ZG_mini_M" H 2500 5300 50  0001 L BNN
+F 3 "STMicroelectronics" H 2500 5300 50  0001 L BNN
+F 4 "po1:DS1023-2*8S21,DS1023-2*10S21,DS1023-2*16S21,DS1023-2*17S21" H 2500 5300 50  0001 C CNN "Comm"
+	5    2500 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10600 6200 10700 6200
+Wire Wire Line
+	10700 6200 10700 6300
+Wire Wire Line
+	4000 6000 4100 6000
+Wire Wire Line
+	4100 6000 4100 6100
+$Comp
+L ff:NUCLEO-H743ZI2 M?
+U 6 1 638341C2
+P 9400 5100
+AR Path="/5E8EE823/638341C2" Ref="M?"  Part="6" 
+AR Path="/5E8EE823/5EB59A8C/638341C2" Ref="M?"  Part="6" 
+AR Path="/5F945AE2/5FF9001B/5EB59A8C/638341C2" Ref="M?"  Part="6" 
+AR Path="/5F945AE2/638341C2" Ref="M?"  Part="6" 
+AR Path="/638341C2" Ref="M?"  Part="6" 
+AR Path="/601A53E0/638341C2" Ref="M?"  Part="6" 
+AR Path="/61D99045/5F945AE2/638341C2" Ref="M?"  Part="6" 
+AR Path="/63BDCA93/63B54412/5F945AE2/638341C2" Ref="M?"  Part="6" 
+AR Path="/6382225E/5F945AE2/638341C2" Ref="M?"  Part="6" 
+AR Path="/637826B2/638341C2" Ref="M1"  Part="6" 
+F 0 "M1" H 9400 6470 50  0000 C CNN
+F 1 "NUCLEO-H743ZI" H 9400 6377 50  0000 C CNN
+F 2 "ff_lib:MODULE_NUCLEO-F746ZG_mini_M" H 9400 5100 50  0001 L BNN
+F 3 "STMicroelectronics" H 9400 5100 50  0001 L BNN
+F 4 "po1:DS1023-2*8S21,DS1023-2*10S21,DS1023-2*16S21,DS1023-2*17S21" H 9400 5100 50  0001 C CNN "Comm"
+	6    9400 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 63BECD53
+P 10700 6300
+AR Path="/61A52C79/63BECD53" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/63BECD53" Ref="#PWR?"  Part="1" 
+AR Path="/63BECD53" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/63BECD53" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/63BECD53" Ref="#PWR062"  Part="1" 
+F 0 "#PWR062" H 10700 6050 50  0001 C CNN
+F 1 "GND" H 10705 6123 50  0000 C CNN
+F 2 "" H 10700 6300 50  0001 C CNN
+F 3 "" H 10700 6300 50  0001 C CNN
+	1    10700 6300
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 5500 6500 1000 1000
+U 63BEE44E
+F0 "uC feed and SDcard" 50
+F1 "uC_SD.sch" 50
+$EndSheet
+$Comp
+L power:GND #PWR037
+U 1 1 637C1533
+P 4100 6100
+F 0 "#PWR037" H 4100 5850 50  0001 C CNN
+F 1 "GND" H 4105 5923 50  0000 C CNN
+F 2 "" H 4100 6100 50  0001 C CNN
+F 3 "" H 4100 6100 50  0001 C CNN
+	1    4100 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10700 4000 10600 4000
+Text GLabel 10700 4000 2    50   Input ~ 0
+VAREF
+Wire Bus Line
+	3100 5700 3750 5700
+Wire Bus Line
+	9550 5400 10350 5400
+Wire Wire Line
+	8200 5300 8100 5300
+Wire Wire Line
+	8200 4200 8100 4200
+Wire Wire Line
+	10600 5800 10700 5800
+Wire Wire Line
+	8200 4900 8100 4900
+Wire Wire Line
+	7200 5100 7300 5100
+Wire Wire Line
+	10600 4300 10800 4300
+Wire Wire Line
+	10600 5700 10700 5700
+Wire Wire Line
+	8200 5100 8100 5100
+Wire Wire Line
+	8200 5000 8100 5000
+Wire Wire Line
+	8200 4300 8100 4300
+Wire Wire Line
+	4300 4200 4800 4200
+Wire Wire Line
+	4300 4300 4800 4300
+Wire Wire Line
+	4300 4400 4800 4400
+Wire Wire Line
+	4300 4500 4800 4500
+Wire Wire Line
+	4300 4600 4800 4600
+Wire Wire Line
+	7200 5300 7700 5300
+Wire Wire Line
+	4300 5700 4800 5700
+Wire Wire Line
+	4300 5800 4800 5800
+Wire Wire Line
+	7200 5800 7700 5800
+Wire Wire Line
+	7200 4700 7700 4700
+Wire Wire Line
+	7200 4600 7700 4600
+Wire Wire Line
+	7200 5000 7700 5000
+Wire Wire Line
+	7200 4300 7700 4300
+Wire Wire Line
+	7200 4200 7700 4200
+Wire Wire Line
+	7200 5700 7700 5700
+Wire Wire Line
+	7200 5500 7700 5500
+Wire Wire Line
+	7200 5600 7700 5600
+Wire Wire Line
+	7200 4900 7700 4900
+Wire Wire Line
+	4300 4900 4800 4900
+Wire Wire Line
+	4300 5000 4800 5000
+Wire Wire Line
+	4300 5100 4800 5100
+Wire Wire Line
+	4300 5200 4800 5200
+Wire Wire Line
+	4300 5300 4800 5300
+Wire Wire Line
+	4300 4700 4800 4700
+Text Label 1200 1000 0    50   ~ 0
+AS1_2
+Text Label 4400 5000 0    50   ~ 0
+AS1_3
+Text Label 4400 5100 0    50   ~ 0
+AS1_4
+Text Label 4400 5200 0    50   ~ 0
+AS1_5
+Text Label 4400 5300 0    50   ~ 0
+AS1_6
+Text Label 4400 4700 0    50   ~ 0
+AS1_7
+Text Label 2700 1000 0    50   ~ 0
+BS1_2
+Text Label 4400 4300 0    50   ~ 0
+BS1_3
+Text Label 4400 4400 0    50   ~ 0
+BS1_4
+Text Label 4400 4500 0    50   ~ 0
+BS1_5
+Text Label 4400 4600 0    50   ~ 0
+BS1_6
+Text Label 7300 5300 0    50   ~ 0
+BS1_7
+Text Label 4400 5700 0    50   ~ 0
+AS2_2
+Text Label 4400 5800 0    50   ~ 0
+AS2_3
+Text Label 7300 5800 0    50   ~ 0
+AS2_4
+Text Label 7300 4700 0    50   ~ 0
+AS2_5
+Text Label 7300 4600 0    50   ~ 0
+AS2_6
+Text Label 7300 5000 0    50   ~ 0
+AS2_7
+Text Label 7300 4300 0    50   ~ 0
+BS2_2
+Text Label 7300 4200 0    50   ~ 0
+BS2_3
+Text Label 7300 5700 0    50   ~ 0
+BS2_4
+Text Label 7300 5500 0    50   ~ 0
+BS2_5
+Text Label 7300 5600 0    50   ~ 0
+BS2_6
+Text Label 7300 4900 0    50   ~ 0
+BS2_7
+Text Label 4400 4900 0    50   ~ 0
+AS1_2
+Text Label 4400 4200 0    50   ~ 0
+BS1_2
+Text Label 1200 2000 0    50   ~ 0
+AS1_3
+Text Label 2700 2000 0    50   ~ 0
+BS1_3
+Text Label 1200 3000 0    50   ~ 0
+AS1_4
+Text Label 2700 3000 0    50   ~ 0
+BS1_4
+Text Label 3700 1000 0    50   ~ 0
+AS1_5
+Text Label 5200 1000 0    50   ~ 0
+BS1_5
+Text Label 5200 2000 0    50   ~ 0
+BS1_6
+Text Label 3700 2000 0    50   ~ 0
+AS1_6
+Text Label 3700 3000 0    50   ~ 0
+AS1_7
+Text Label 5200 3000 0    50   ~ 0
+BS1_7
+Text Label 6200 1000 0    50   ~ 0
+AS2_2
+Text Label 6200 2000 0    50   ~ 0
+AS2_3
+Text Label 6200 3000 0    50   ~ 0
+AS2_4
+Text Label 8700 1000 0    50   ~ 0
+AS2_5
+Text Label 8700 2000 0    50   ~ 0
+AS2_6
+Text Label 8700 3000 0    50   ~ 0
+AS2_7
+Text Label 7700 1000 0    50   ~ 0
+BS2_2
+Text Label 7700 2000 0    50   ~ 0
+BS2_3
+Text Label 7700 3000 0    50   ~ 0
+BS2_4
+Text Label 10200 1000 0    50   ~ 0
+BS2_5
+Text Label 10200 2000 0    50   ~ 0
+BS2_6
+Text Label 10200 3000 0    50   ~ 0
+BS2_7
+Wire Wire Line
+	7200 6000 7300 6000
+Wire Wire Line
+	7300 6000 7300 6100
+$Comp
+L power:GND #PWR?
+U 1 1 638A979F
+P 7300 6100
+AR Path="/61A52C79/638A979F" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/638A979F" Ref="#PWR?"  Part="1" 
+AR Path="/638A979F" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/638A979F" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/638A979F" Ref="#PWR0186"  Part="1" 
+F 0 "#PWR0186" H 7300 5850 50  0001 C CNN
+F 1 "GND" H 7305 5923 50  0000 C CNN
+F 2 "" H 7300 6100 50  0001 C CNN
+F 3 "" H 7300 6100 50  0001 C CNN
+	1    7300 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10700 6200 10700 6100
+Wire Wire Line
+	10700 6100 10600 6100
+Connection ~ 10700 6200
+$Comp
+L Device:C C?
+U 1 1 6383C22D
+P 7300 3850
+AR Path="/61A52C79/6383C22D" Ref="C?"  Part="1" 
+AR Path="/61C2E805/6383C22D" Ref="C?"  Part="1" 
+AR Path="/61A73B5E/6383C22D" Ref="C?"  Part="1" 
+AR Path="/6235E293/61A73B5E/6383C22D" Ref="C?"  Part="1" 
+AR Path="/63BDCAAB/6383C22D" Ref="C?"  Part="1" 
+AR Path="/6383C22D" Ref="C?"  Part="1" 
+AR Path="/6364DDE6/6383C22D" Ref="C?"  Part="1" 
+AR Path="/63650C2C/6383C22D" Ref="C?"  Part="1" 
+AR Path="/637826B2/6383C22D" Ref="C19"  Part="1" 
+F 0 "C19" V 7150 3850 50  0000 C CNN
+F 1 "100n 50V X7R" V 7450 3850 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0603" H 7338 3700 50  0001 C CNN
+F 3 "~" H 7300 3850 50  0001 C CNN
+	1    7300 3850
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	7550 3850 7450 3850
+$Comp
+L power:GND #PWR?
+U 1 1 6383C234
+P 7550 3850
+AR Path="/61A52C79/6383C234" Ref="#PWR?"  Part="1" 
+AR Path="/63510248/6383C234" Ref="#PWR?"  Part="1" 
+AR Path="/6383C234" Ref="#PWR?"  Part="1" 
+AR Path="/63650C2C/6383C234" Ref="#PWR?"  Part="1" 
+AR Path="/637826B2/6383C234" Ref="#PWR01"  Part="1" 
+F 0 "#PWR01" H 7550 3600 50  0001 C CNN
+F 1 "GND" H 7555 3673 50  0000 C CNN
+F 2 "" H 7550 3850 50  0001 C CNN
+F 3 "" H 7550 3850 50  0001 C CNN
+	1    7550 3850
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	6650 3850 7150 3850
+Text Label 6750 3850 0    50   ~ 0
+REF2_1:3
+Wire Wire Line
+	6200 3700 6100 3700
+Wire Wire Line
+	6100 3700 6100 3300
+Text GLabel 6200 3700 2    50   Input ~ 0
+REF223
+$EndSCHEMATC
