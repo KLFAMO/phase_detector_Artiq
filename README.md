@@ -34,4 +34,3 @@ The phase detector is suitable for a variety of applications, including:
 ## Documentation
 
 Detailed documentation, including schematics, source code, and configuration instructions, will be provided in future releases of the repository.
-
