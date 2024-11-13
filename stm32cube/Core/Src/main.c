@@ -226,7 +226,7 @@ static void MX_SPI4_Init(void)
   hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi4.Init.NSS = SPI_NSS_SOFT;
-  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   hspi4.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi4.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi4.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -405,37 +405,37 @@ void HMC984_WriteRegister(uint32_t data, uint8_t address) {
     buffer[2] = (data >> 6) & 0xFF;
     buffer[3] = (data & 0x3F) << 2; //LSB
     buffer[3] |= (address >> 5) & 0x03;
-    buffer[4] = (address << 3) | chip_address;
+    buffer[4] = (address << 3) | (chip_address & 0b111);
 
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
-    // Wyślij dane przez SPI4 (40-bitów w 5 bajtach)
     HAL_SPI_Transmit(&hspi4, buffer, 5, HAL_MAX_DELAY);
 
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 }
 
 uint32_t HMC984_ReadRegister(uint8_t address) {
     uint8_t tx_buffer[5] = {0};
-    uint8_t rx_buffer[5];
+    uint8_t rx_buffer[5] = {0};
     uint32_t received_data = 0;
 
     // Phase 1: set reg addr to Reg 00h
-    HMC984_WriteRegister(0, address);
+    HMC984_WriteRegister(address, 0);
 
     // Phase 2: read data
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
     HAL_SPI_TransmitReceive(&hspi4, tx_buffer, rx_buffer, 5, HAL_MAX_DELAY);
 
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 
-    received_data = ((uint32_t)rx_buffer[0] << 22) | ((uint32_t)rx_buffer[1] << 14) |
-                        ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
+    // for some reason received data is shifted 1 bit to the right
+    received_data = ((uint32_t)rx_buffer[0] << 23) | ((uint32_t)rx_buffer[1] << 15) |
+                        ((uint32_t)rx_buffer[2] << 7) | ((uint32_t)rx_buffer[3] >> 1);
 
     return received_data;
 }
