@@ -35,33 +35,14 @@ typedef struct {
     mestab mes;
 } value;
 
-typedef struct {
-	value raw;
-    value volt;
-    value avr;
-    value coron;
-    value corfactor;
-}sadcchannel;
-
-typedef struct{
-    sadcchannel ch1;
-    sadcchannel ch2;
-} sadc;
-
-typedef struct {
-	value raw;
-    value volt;
-}sdacchannel;
-
-typedef struct{
-	sdacchannel ch1;
-} sdac;
-
 
 
 typedef struct {
-    sadc adc;
-    sdac dac;
+    value r;
+    value w;
+    value tv;
+    value rv;
+    value addr;
 } parameters;
 
 pointer getPointer(pointer,char * );

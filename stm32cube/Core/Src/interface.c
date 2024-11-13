@@ -25,50 +25,17 @@ pointer getPointer(pointer p, char *s)
   if (strcmp(p.type, "parameters") == 0)
   {
     parameters *ptmp = (parameters *)p.p;
-    if (strcmp(s, "ADC") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->adc), .type = "adc"};
-    if (strcmp(s, "DAC") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->dac), .type = "dac"};
+    if (strcmp(s, "R") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->r), .type = "value"};
+    if (strcmp(s, "W") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->w), .type = "value"};
+    if (strcmp(s, "RV") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->rv), .type = "value"};
+    if (strcmp(s, "TV") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->tv), .type = "value"};
+    if (strcmp(s, "ADDR") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->addr), .type = "value"};
   }
-
-  if (strcmp(p.type, "adc") == 0)
-  {
-    sadc *ptmp = (sadc *)p.p;
-    if (strcmp(s, "CH1") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->ch1), .type = "adcchannel"};
-    if (strcmp(s, "CH2") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->ch2), .type = "adcchannel"};
-  }
-  if (strcmp(p.type, "adcchannel") == 0)
-  {
-    sadcchannel *ptmp = (sadcchannel *)p.p;
-    if (strcmp(s, "RAW") == 0)
-          pout = (pointer){.p = (void *)&(ptmp->raw), .type = "value"};
-    if (strcmp(s, "VOLT") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->volt), .type = "value"};
-    if (strcmp(s, "AVR") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->avr), .type = "value"};
-    if (strcmp(s, "CORON") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->coron), .type = "value"};
-    if (strcmp(s, "CORFACTOR") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->corfactor), .type = "value"};
-  }
-
-  if (strcmp(p.type, "dac") == 0)
-    {
-      sdac *ptmp = (sdac *)p.p;
-      if (strcmp(s, "CH1") == 0)
-        pout = (pointer){.p = (void *)&(ptmp->ch1), .type = "dacchannel"};
-    }
-
-  if (strcmp(p.type, "dacchannel") == 0)
-    {
-      sdacchannel *ptmp = (sdacchannel *)p.p;
-      if (strcmp(s, "RAW") == 0)
-            pout = (pointer){.p = (void *)&(ptmp->raw), .type = "value"};
-      if (strcmp(s, "VOLT") == 0)
-        pout = (pointer){.p = (void *)&(ptmp->volt), .type = "value"};
-    }
 
   if (strcmp(p.type, "value") == 0)
   {
@@ -126,11 +93,11 @@ void setParam(value *p, double val)
 
 void initInterface(void)
 {
-  par.adc.ch1.avr = (value){.val = 50, .min = 1, .max = 100};
-  par.adc.ch1.volt = (value){.val = 0, .min = 0, .max = 41000};
-  par.adc.ch1.coron = (value){.val = 0, .min = 0, .max = 1};
-  par.adc.ch1.corfactor = (value){.val = 1, .min = 0, .max = 100};
-  par.dac.ch1.volt = (value){.val = 0, .min = 0, .max = 5};
+  par.r = (value){.val = 0, .min = 0, .max = 1};
+  par.w = (value){.val = 0, .min = 0, .max = 1};
+  par.tv = (value){.val = 0, .min = 0, .max = 0x3FFFFFFF};
+  par.rv = (value){.val = 0, .min = 0, .max = 0x3FFFFFFF};
+  par.addr = (value){.val = 0, .min = 0, .max = 0b1111111};
 }
 
 /*------------------------*/
