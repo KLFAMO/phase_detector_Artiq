@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -57,26 +57,31 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LD1_Pin GPIO_PIN_0
-#define LD1_GPIO_Port GPIOB
-#define PHDET_NSS_Pin GPIO_PIN_11
-#define PHDET_NSS_GPIO_Port GPIOE
-#define PHDET_SCK_Pin GPIO_PIN_12
-#define PHDET_SCK_GPIO_Port GPIOE
-#define PHDET_MISO_Pin GPIO_PIN_13
-#define PHDET_MISO_GPIO_Port GPIOE
-#define PHDET_MOSI_Pin GPIO_PIN_14
-#define PHDET_MOSI_GPIO_Port GPIOE
-#define LD3_Pin GPIO_PIN_14
-#define LD3_GPIO_Port GPIOB
+#define DIV2_S1_Pin GPIO_PIN_8
+#define DIV2_S1_GPIO_Port GPIOE
+#define DIV2_S2_Pin GPIO_PIN_9
+#define DIV2_S2_GPIO_Port GPIOE
+#define DIV2_S0_Pin GPIO_PIN_10
+#define DIV2_S0_GPIO_Port GPIOE
+#define DIV1_S2_Pin GPIO_PIN_11
+#define DIV1_S2_GPIO_Port GPIOE
+#define DIV1_S1_Pin GPIO_PIN_12
+#define DIV1_S1_GPIO_Port GPIOE
+#define DIV1_S0_Pin GPIO_PIN_13
+#define DIV1_S0_GPIO_Port GPIOE
 #define STLINK_RX_Pin GPIO_PIN_8
 #define STLINK_RX_GPIO_Port GPIOD
 #define STLINK_TX_Pin GPIO_PIN_9
 #define STLINK_TX_GPIO_Port GPIOD
-#define PHDET_CEN_Pin GPIO_PIN_6
-#define PHDET_CEN_GPIO_Port GPIOG
-#define LD2_Pin GPIO_PIN_1
-#define LD2_GPIO_Port GPIOE
+#define TXD2_Pin GPIO_PIN_6
+#define TXD2_GPIO_Port GPIOC
+#define RXD2_Pin GPIO_PIN_7
+#define RXD2_GPIO_Port GPIOC
+#define TXD1_Pin GPIO_PIN_9
+#define TXD1_GPIO_Port GPIOA
+#define RXD1_Pin GPIO_PIN_10
+#define RXD1_GPIO_Port GPIOA
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -35,14 +35,19 @@ typedef struct {
     mestab mes;
 } value;
 
-
+typedef struct {
+    value div;
+    value al_sw;
+} divider;
 
 typedef struct {
-    value r;
-    value w;
-    value tv;
-    value rv;
-    value addr;
+    double version;
+    value ver;
+    value mode;
+    divider osc;
+    divider ref;
+    value save;
+    value load;
 } parameters;
 
 pointer getPointer(pointer,char * );

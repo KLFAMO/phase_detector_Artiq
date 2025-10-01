@@ -25,47 +25,58 @@ pointer getPointer(pointer p, char *s)
   if (strcmp(p.type, "parameters") == 0)
   {
     parameters *ptmp = (parameters *)p.p;
-    if (strcmp(s, "R") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->r), .type = "value"};
-    if (strcmp(s, "W") == 0)
-          pout = (pointer){.p = (void *)&(ptmp->w), .type = "value"};
-    if (strcmp(s, "RV") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->rv), .type = "value"};
-    if (strcmp(s, "TV") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->tv), .type = "value"};
-    if (strcmp(s, "ADDR") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->addr), .type = "value"};
+    if (strcasecmp(s, "VER") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->ver), .type = "value"};
+    if (strcasecmp(s, "MODE") == 0)
+	    pout = (pointer){.p = (void *)&(ptmp->mode), .type = "value"};
+    if (strcasecmp(s, "OSC") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->osc), .type = "divider"};
+    if (strcasecmp(s, "REF") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->ref), .type = "divider"};
+    if (strcasecmp(s, "SAVE") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->save), .type = "value"};
+    if (strcasecmp(s, "LOAD") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->load), .type = "value"};
   }
+
+  if (strcmp(p.type, "divider") == 0)
+    {
+      divider *ptmp = (divider *)p.p;
+      if (strcasecmp(s, "DIV") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->div), .type = "value"};
+      if (strcasecmp(s, "AL_SW") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->al_sw), .type = "value"};
+    }
 
   if (strcmp(p.type, "value") == 0)
   {
     value *ptmp = (value *)p.p;
-    if (strcmp(s, "VAL") == 0)
+    if (strcasecmp(s, "VAL") == 0)
       pout = (pointer){.p = (void *)&(ptmp->val), .type = "double"};
-    if (strcmp(s, "MIN") == 0)
+    if (strcasecmp(s, "MIN") == 0)
       pout = (pointer){.p = (void *)&(ptmp->min), .type = "double"};
-    if (strcmp(s, "MAX") == 0)
+    if (strcasecmp(s, "MAX") == 0)
       pout = (pointer){.p = (void *)&(ptmp->max), .type = "double"};
-    if (strcmp(s, "TABON") == 0)
+    if (strcasecmp(s, "TABON") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabon), .type = "ison"};
-    if (strcmp(s, "MES") == 0)
+    if (strcasecmp(s, "MES") == 0)
       pout = (pointer){.p = (void *)&(ptmp->mes), .type = "mestab"};
   }
 
   if (strcmp(p.type, "mestab") == 0)
   {
     mestab *ptmp = (mestab *)p.p;
-    if (strcmp(s, "SIZE") == 0)
+    if (strcasecmp(s, "SIZE") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabsize), .type = "int"};
-    if (strcmp(s, "COUNT") == 0)
+    if (strcasecmp(s, "COUNT") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabcount), .type = "int"};
-    if (strcmp(s, "POS") == 0)
+    if (strcasecmp(s, "POS") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabpos), .type = "int"};
   }
   if (strcmp(p.type, "ison") == 0)
   {
     ison *ptmp = (ison *)p.p;
-    if (strcmp(s, "IS") == 0)
+    if (strcasecmp(s, "IS") == 0)
       pout = (pointer){.p = (void *)&(ptmp->is), .type = "int"};
   }
   return pout;
@@ -93,11 +104,16 @@ void setParam(value *p, double val)
 
 void initInterface(void)
 {
-  par.r = (value){.val = 0, .min = 0, .max = 1};
-  par.w = (value){.val = 0, .min = 0, .max = 1};
-  par.tv = (value){.val = 0, .min = 0, .max = 0x3FFFFFFF};
-  par.rv = (value){.val = 0, .min = 0, .max = 0x3FFFFFFF};
-  par.addr = (value){.val = 0, .min = 0, .max = 0b1111111};
+  par.version = 1; // version of parameters structure, increment if structure changes
+  par.ver = (value){.val = 1, .min = 0, .max = 100};
+  par.mode = (value){.val = 0, .min = 0, .max = 0};
+  par.save = (value){.val = 0, .min = 0, .max = 1};
+  par.load = (value){.val = 0, .min = 0, .max = 1};
+
+  par.osc.div = (value){.val = 1, .min = 1, .max = 16};
+  par.osc.al_sw = (value){.val = 0, .min = 0, .max = 1};
+  par.ref.div = (value){.val = 1, .min = 1, .max = 16};
+  par.ref.al_sw = (value){.val = 0, .min = 0, .max = 1};
 }
 
 /*------------------------*/
@@ -110,7 +126,7 @@ void initInterface(void)
 int cmd_string_interpret(char *sin, char *sout)
 {
   char scmd[100];
-  char ssend[2300];
+  char ssend[100];
   int i = 0, iscmd = 0, sinlen = 0;
   strcpy(ssend, "");
   sinlen = strlen(sin);
@@ -204,7 +220,7 @@ int cmd_interpret(char *sin, char *ssend)
 
   if (sarg[0] == '?')
   {
-	  strcat(ssend, "*?*\n");
+//	  strcat(ssend, "*?*\n");
     if (strcmp(parg.type, "double") == 0){
     	//strcat(ssend, "*double*\n");
     	ftostr(stmp, *((double *)(parg.p)));
@@ -315,32 +331,81 @@ int rmwhite(char *str)
   return 0;
 }
 
-double atofmy(char *str)
-{
-  double out;
-  int isdot = 0, i, len, dotpos = 0, inttemp;
-  len = strlen(str);
-  if (str[len - 1] == '\n')
-    len = len - 1;
-  for (i = 0; i < len; i++)
-  {
-    if (str[i] == '.')
-    {
-      if (isdot == 1)
-        return 0;
-      isdot = 1;
-      dotpos = i;
+//double atofmy(char *str)
+//{
+//  double out;
+//  int isdot = 0, i, len, dotpos = 0, inttemp;
+//  len = strlen(str);
+//  if (str[len - 1] == '\n')
+//    len = len - 1;
+//  for (i = 0; i < len; i++)
+//  {
+//    if (str[i] == '.')
+//    {
+//      if (isdot == 1)
+//        return 0;
+//      isdot = 1;
+//      dotpos = i;
+//    }
+//    if (isdot == 1)
+//    {
+//      str[i] = str[i + 1];
+//    }
+//  }
+//  inttemp = atoi(str);
+//  out = (double)inttemp;
+//  if (isdot)
+//    out = out * pow(10, -1 * (len - dotpos - 1));
+//  return out;
+//}
+
+
+double atofmy(char *str) {
+    double result = 0.0;  // result
+    double fraction_part = 0.0;
+    int sign = 1;
+    int i = 0;
+    int is_fraction = 0;
+    double divisor = 10.0;
+
+    // cut on the first white space
+    while (str[i] == ' ' || str[i] == '\t') {
+        i++;
     }
-    if (isdot == 1)
-    {
-      str[i] = str[i + 1];
+
+    // check sign
+    if (str[i] == '-') {
+        sign = -1;
+        i++;
+    } else if (str[i] == '+') {
+        i++;
     }
-  }
-  inttemp = atoi(str);
-  out = (double)inttemp;
-  if (isdot)
-    out = out * pow(10, -1 * (len - dotpos - 1));
-  return out;
+
+    // integer part
+    while (str[i] != '\0') {
+        if (str[i] == '.') {
+            // start fractional part
+            is_fraction = 1;
+            i++;
+            continue;
+        }
+
+        // Sprawdzanie, czy mamy cyfrďż˝
+        if (str[i] >= '0' && str[i] <= '9') {
+            if (!is_fraction) {
+                result = result * 10 + (str[i] - '0');
+            } else {
+                fraction_part += (str[i] - '0') / divisor;
+                divisor *= 10.0;
+            }
+        } else {
+            break;
+        }
+        i++;
+    }
+    result += fraction_part;
+    result *= sign;
+    return result;
 }
 
 int ftostr(char *str, double val)
@@ -361,8 +426,8 @@ int ftostr(char *str, double val)
     istr++;
     val = -1 * val;
   }
-  factor = 100000000;
-  while (factor > 0.00000001 && factor > val)
+  factor = 10000000000000000;
+  while (factor > 0.000000000001 && factor > val)
     factor = factor / 10;
   order = (int)log10(factor);
   if (order < 0)
@@ -378,7 +443,7 @@ int ftostr(char *str, double val)
       istr++;
     }
   }
-  for (j = 0; j < 10; j++)
+  for (j = 0; j < 15; j++)
   {
     for (i = 9; i >= 0; i--)
     {
