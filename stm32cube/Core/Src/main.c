@@ -185,8 +185,8 @@ int main(void)
 	  	  			  rxBuffer[index++]='\0';
 	  	  			  ExtractMessage((char*) rxBuffer, (char*) txBuffer);
 //	  	  			  strcpy(tmpBuffer, helloMsg);
-	  	  			  strcat(tmpBuffer, txBuffer);
-	  	  			  strcpy(txBuffer, tmpBuffer);
+	  	  			  // strcat(tmpBuffer, txBuffer);
+	  	  			  // strcpy(txBuffer, tmpBuffer);
 
 	  	  			  HAL_UART_Transmit(&huart4, txBuffer, strlen(txBuffer), HAL_MAX_DELAY);
 	  	  			  HAL_UART_Transmit(&huart4, helloMsg, strlen(helloMsg), HAL_MAX_DELAY);
@@ -198,22 +198,6 @@ int main(void)
 	  	  		  }
 	  	  	  }
 
-
-
-//	  // Heartbeat co ~1s, powinien być widoczny w netcat
-//
-//	      HAL_UART_Transmit(&huart4, (uint8_t*)hb, sizeof(hb)-1, HAL_MAX_DELAY);
-//	      HAL_Delay(1000);
-//
-//	      // Echo: wszystko co przyjdzie z T2 po UART4 – odeślij z powrotem
-//	      if (HAL_UART_Receive(&huart4, &rxChar, 1, 0) == HAL_OK) {
-//	          HAL_UART_Transmit(&huart4, &rxChar, 1, HAL_MAX_DELAY);
-//	          // opcjonalnie dopchnij CRLF gdy przyjdzie LF
-//	          if (rxChar == '\n') {
-//	              uint8_t crlf[2] = {'\r','\n'};
-//	              HAL_UART_Transmit(&huart4, crlf, 2, HAL_MAX_DELAY);
-//	          }
-//	      }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -288,10 +272,7 @@ static void MX_UART4_Init(void)
 {
 
   /* USER CODE BEGIN UART4_Init 0 */
-//	RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-//	PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART234578;
-//	PeriphClkInit.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_HSI; // lub HSI na test
-//	HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
+
   /* USER CODE END UART4_Init 0 */
 
   /* USER CODE BEGIN UART4_Init 1 */
