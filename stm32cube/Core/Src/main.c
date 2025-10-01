@@ -483,7 +483,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = DIV2_S1_Pin|DIV2_S2_Pin|DIV2_S0_Pin|DIV1_S2_Pin
                           |DIV1_S1_Pin|DIV1_S0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
