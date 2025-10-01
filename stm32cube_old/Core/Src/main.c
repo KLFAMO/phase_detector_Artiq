@@ -128,6 +128,15 @@ int main(void)
   tcp_server_init();
   initInterface();
 
+  // HAL_GPIO_WritePin(DIV1_GPIO_Port, DIV1_Pin, GPIO_PIN_RESET);
+  // HAL_GPIO_WritePin(DIV2_GPIO_Port, DIV2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(DIV1_S0_GPIO_Port, DIV1_S0_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(DIV1_S1_GPIO_Port, DIV1_S1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(DIV1_S2_GPIO_Port, DIV1_S2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(DIV2_S0_GPIO_Port, DIV2_S0_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(DIV2_S1_GPIO_Port, DIV2_S1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(DIV2_S2_GPIO_Port, DIV2_S2_Pin, GPIO_PIN_RESET);
+
 
   HAL_TIM_Base_Start_IT(&htim7);
 

@@ -106,8 +106,8 @@ static void MX_UART4_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART6_UART_Init(void);
 /* USER CODE BEGIN PFP */
-int ExtractMessageOld(char* msg, char* out);
 void ExtractMessage(char* rxBuffer, char* txBuffer);
+void SetDiv(uint8_t number, uint8_t div);
 
 uint8_t rxChar;
   uint8_t rxBuffer[BUFFER_SIZE];
@@ -158,7 +158,6 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-
   initInterface();
 
   // read par from flash
@@ -197,6 +196,8 @@ int main(void)
 	  	  			  if (index >= BUFFER_SIZE) index = 0;
 	  	  		  }
 	  	  	  }
+    SetDiv(1, par.osc.div.val);
+    SetDiv(2, par.ref.div.val);
 
     /* USER CODE END WHILE */
 
@@ -497,6 +498,39 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	/*
 	
 	 */
+}
+
+void SetDiv(uint8_t number, uint8_t div)
+{
+    GPIO_PinState s0, s1, s2;
+
+    if (div < 2) {
+        div = 1;
+        s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_SET;
+    } else if (div < 4) {
+        div = 2;
+        s0 = GPIO_PIN_RESET; s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_SET;
+    } else if (div < 8) {
+        div = 4;
+        s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_RESET;
+    } else if (div < 16) {
+        div = 8;
+        s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_RESET; s2 = GPIO_PIN_RESET;
+    } else {
+        div = 16;
+        s0 = GPIO_PIN_RESET; s1 = GPIO_PIN_RESET; s2 = GPIO_PIN_RESET;
+    }
+
+    if (number == 2) {
+        HAL_GPIO_WritePin(DIV1_S0_GPIO_Port, DIV1_S0_Pin, s0);
+        HAL_GPIO_WritePin(DIV1_S1_GPIO_Port, DIV1_S1_Pin, s1);
+        HAL_GPIO_WritePin(DIV1_S2_GPIO_Port, DIV1_S2_Pin, s2);
+    }
+    if (number == 1) {
+         HAL_GPIO_WritePin(DIV2_S0_GPIO_Port, DIV2_S0_Pin, s0);
+         HAL_GPIO_WritePin(DIV2_S1_GPIO_Port, DIV2_S1_Pin, s1);
+         HAL_GPIO_WritePin(DIV2_S2_GPIO_Port, DIV2_S2_Pin, s2);
+    }  
 }
 
 void ExtractMessage(char* rxBuffer, char* txBuffer)
