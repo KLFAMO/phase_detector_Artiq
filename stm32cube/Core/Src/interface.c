@@ -30,22 +30,24 @@ pointer getPointer(pointer p, char *s)
     if (strcasecmp(s, "MODE") == 0)
 	    pout = (pointer){.p = (void *)&(ptmp->mode), .type = "value"};
     if (strcasecmp(s, "OSC") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->osc), .type = "divider"};
+      pout = (pointer){.p = (void *)&(ptmp->osc), .type = "oscilator"};
     if (strcasecmp(s, "REF") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->ref), .type = "divider"};
+      pout = (pointer){.p = (void *)&(ptmp->ref), .type = "oscilator"};
     if (strcasecmp(s, "SAVE") == 0)
       pout = (pointer){.p = (void *)&(ptmp->save), .type = "value"};
     if (strcasecmp(s, "LOAD") == 0)
       pout = (pointer){.p = (void *)&(ptmp->load), .type = "value"};
   }
 
-  if (strcmp(p.type, "divider") == 0)
+  if (strcmp(p.type, "oscilator") == 0)
     {
-      divider *ptmp = (divider *)p.p;
+      oscilator *ptmp = (oscilator *)p.p;
       if (strcasecmp(s, "DIV") == 0)
         pout = (pointer){.p = (void *)&(ptmp->div), .type = "value"};
       if (strcasecmp(s, "AL_SW") == 0)
         pout = (pointer){.p = (void *)&(ptmp->al_sw), .type = "value"};
+      if (strcasecmp(s, "F") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->f), .type = "value"};
     }
 
   if (strcmp(p.type, "value") == 0)

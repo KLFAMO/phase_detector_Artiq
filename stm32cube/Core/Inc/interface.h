@@ -38,14 +38,15 @@ typedef struct {
 typedef struct {
     value div;
     value al_sw;
-} divider;
+    value f;
+} oscilator;
 
 typedef struct {
     double version;
     value ver;
     value mode;
-    divider osc;
-    divider ref;
+    oscilator osc;
+    oscilator ref;
     value save;
     value load;
 } parameters;

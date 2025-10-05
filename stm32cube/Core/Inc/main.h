@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define XREF_Pin GPIO_PIN_0
+#define XREF_GPIO_Port GPIOA
+#define XVCO_Pin GPIO_PIN_4
+#define XVCO_GPIO_Port GPIOA
 #define DIV2_S1_Pin GPIO_PIN_8
 #define DIV2_S1_GPIO_Port GPIOE
 #define DIV2_S2_Pin GPIO_PIN_9
