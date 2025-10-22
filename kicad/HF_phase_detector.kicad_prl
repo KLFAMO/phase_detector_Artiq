@@ -64,6 +64,12 @@
     "visible_layers": "ffcfff0_fffffff9",
     "zone_display_mode": 1
   },
+  "git": {
+    "repo_password": "",
+    "repo_type": "",
+    "repo_username": "",
+    "ssh_key": ""
+  },
   "meta": {
     "filename": "HF_phase_detector.kicad_prl",
     "version": 3
