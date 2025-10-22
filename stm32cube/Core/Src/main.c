@@ -44,6 +44,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 
+SPI_HandleTypeDef hspi2;
+
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim6;
 
@@ -110,19 +112,10 @@ static void MX_USART1_UART_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM6_Init(void);
+static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
-void ExtractMessage(char* rxBuffer, char* txBuffer);
-void SetDiv(uint8_t number, uint8_t div);
-
-uint8_t rxChar;
-  uint8_t rxBuffer[BUFFER_SIZE];
-  uint8_t txBuffer[BUFFER_SIZE];
-  uint8_t tmpBuffer[BUFFER_SIZE];
-  uint16_t index = 0;
-  uint8_t helloMsg[] = "\nPhDet>";
-  HAL_StatusTypeDef status;
-  static uint32_t last_cnt = 0;
-
+void HMC984_WriteRegister(uint32_t data, uint8_t address);
+uint32_t HMC984_ReadRegister(uint8_t address);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -165,6 +158,7 @@ int main(void)
   MX_USART6_UART_Init();
   MX_TIM2_Init();
   MX_TIM6_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   initInterface();
 
@@ -283,6 +277,54 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 0x0;
+  hspi2.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  hspi2.Init.NSSPolarity = SPI_NSS_POLARITY_LOW;
+  hspi2.Init.FifoThreshold = SPI_FIFO_THRESHOLD_01DATA;
+  hspi2.Init.TxCRCInitializationPattern = SPI_CRC_INITIALIZATION_ALL_ZERO_PATTERN;
+  hspi2.Init.RxCRCInitializationPattern = SPI_CRC_INITIALIZATION_ALL_ZERO_PATTERN;
+  hspi2.Init.MasterSSIdleness = SPI_MASTER_SS_IDLENESS_00CYCLE;
+  hspi2.Init.MasterInterDataIdleness = SPI_MASTER_INTERDATA_IDLENESS_00CYCLE;
+  hspi2.Init.MasterReceiverAutoSusp = SPI_MASTER_RX_AUTOSUSP_DISABLE;
+  hspi2.Init.MasterKeepIOState = SPI_MASTER_KEEP_IO_STATE_DISABLE;
+  hspi2.Init.IOSwap = SPI_IO_SWAP_DISABLE;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
+
 }
 
 /**
@@ -576,15 +618,21 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, DIV2_S1_Pin|DIV2_S2_Pin|DIV2_S0_Pin|DIV1_S2_Pin
                           |DIV1_S1_Pin|DIV1_S0_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : XVCO_Pin */
   GPIO_InitStruct.Pin = XVCO_Pin;
@@ -603,75 +651,68 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PHDET_CEN_Pin */
+  GPIO_InitStruct.Pin = PHDET_CEN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(PHDET_CEN_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PHDET_NSS_Pin */
+  GPIO_InitStruct.Pin = PHDET_NSS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(PHDET_NSS_GPIO_Port, &GPIO_InitStruct);
+
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	/*
-	
-	 */
+
+void HMC984_WriteRegister(uint32_t data, uint8_t address) {
+    uint8_t buffer[5];  // 40-bits
+    uint8_t chip_address = 0b100;
+
+    buffer[0] = (data >> 22) & 0xFF; // MSB
+    buffer[1] = (data >> 14) & 0xFF;
+    buffer[2] = (data >> 6) & 0xFF;
+    buffer[3] = (data & 0x3F) << 2; //LSB
+    buffer[3] |= (address >> 5) & 0x03;
+    buffer[4] = (address << 3) | chip_address;
+
+//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
+
+    // Wyślij dane przez SPI2 (40-bitów w 5 bajtach)
+    HAL_SPI_Transmit(&hspi2, buffer, 5, HAL_MAX_DELAY);
+
+    HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 }
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM6) {
-        uint32_t cnt = __HAL_TIM_GET_COUNTER(&htim2);
-        uint32_t delta = cnt - last_cnt;   // poprawne modulo 2^32
-        last_cnt = cnt;
+uint32_t HMC984_ReadRegister(uint8_t address) {
+    uint8_t tx_buffer[5] = {0};
+    uint8_t rx_buffer[5];
+    uint32_t received_data = 0;
 
-        // Okno 100 ms = 0.1 s
-        // float f_ref = (float)delta / 0.1f;
-        // par.ref.f.val = f_ref/2.0f;  // dzielę przez 2 bo sygnał z licznika to impulsy na zboczu rosnącym i opadającym
+    // Phase 1: set reg addr to Reg 00h
+    HMC984_WriteRegister(0, address);
 
-        // Jeśli wolisz okno resetowane (zawsze od zera), użyj zamiast powyższego:
-//        float f_ref = (float)cnt / 2.0;
-        par.ref.f.val = (uint32_t)cnt;
-        __HAL_TIM_SET_COUNTER(&htim2, 0);
-        last_cnt = 0;
-    }
-}
+    // Phase 2: read data
+//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
-void SetDiv(uint8_t number, uint8_t div)
-{
-    GPIO_PinState s0, s1, s2;
+    HAL_SPI_TransmitReceive(&hspi2, tx_buffer, rx_buffer, 5, HAL_MAX_DELAY);
 
-    if (div < 2) {
-        div = 1;
-        s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_SET;
-    } else if (div < 4) {
-        div = 2;
-        s0 = GPIO_PIN_RESET; s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_SET;
-    } else if (div < 8) {
-        div = 4;
-        s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_RESET;
-    } else if (div < 16) {
-        div = 8;
-        s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_RESET; s2 = GPIO_PIN_RESET;
-    } else {
-        div = 16;
-        s0 = GPIO_PIN_RESET; s1 = GPIO_PIN_RESET; s2 = GPIO_PIN_RESET;
-    }
+    HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 
-    if (number == 2) {
-        HAL_GPIO_WritePin(DIV1_S0_GPIO_Port, DIV1_S0_Pin, s0);
-        HAL_GPIO_WritePin(DIV1_S1_GPIO_Port, DIV1_S1_Pin, s1);
-        HAL_GPIO_WritePin(DIV1_S2_GPIO_Port, DIV1_S2_Pin, s2);
-    }
-    if (number == 1) {
-         HAL_GPIO_WritePin(DIV2_S0_GPIO_Port, DIV2_S0_Pin, s0);
-         HAL_GPIO_WritePin(DIV2_S1_GPIO_Port, DIV2_S1_Pin, s1);
-         HAL_GPIO_WritePin(DIV2_S2_GPIO_Port, DIV2_S2_Pin, s2);
-    }  
-}
+    received_data = ((uint32_t)rx_buffer[0] << 22) | ((uint32_t)rx_buffer[1] << 14) |
+                        ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
 
-void ExtractMessage(char* rxBuffer, char* txBuffer)
-{
-    cmd_string_interpret(rxBuffer, txBuffer);
-    txBuffer[BUFFER_SIZE - 1] = '\0';
-    //update_array();
+    return received_data;
 }
 
 /* USER CODE END 4 */

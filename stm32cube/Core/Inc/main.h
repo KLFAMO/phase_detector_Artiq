@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PHDET_MOSI_Pin GPIO_PIN_1
+#define PHDET_MOSI_GPIO_Port GPIOC
+#define PHDET_MISO_Pin GPIO_PIN_2
+#define PHDET_MISO_GPIO_Port GPIOC
 #define XREF_Pin GPIO_PIN_0
 #define XREF_GPIO_Port GPIOA
 #define XVCO_Pin GPIO_PIN_4
@@ -73,6 +77,12 @@ void Error_Handler(void);
 #define DIV1_S1_GPIO_Port GPIOE
 #define DIV1_S0_Pin GPIO_PIN_13
 #define DIV1_S0_GPIO_Port GPIOE
+#define PHDET_CEN_Pin GPIO_PIN_14
+#define PHDET_CEN_GPIO_Port GPIOE
+#define PHDET_NSS_Pin GPIO_PIN_12
+#define PHDET_NSS_GPIO_Port GPIOB
+#define PHDET_SCK_Pin GPIO_PIN_13
+#define PHDET_SCK_GPIO_Port GPIOB
 #define STLINK_RX_Pin GPIO_PIN_8
 #define STLINK_RX_GPIO_Port GPIOD
 #define STLINK_TX_Pin GPIO_PIN_9
