@@ -116,6 +116,8 @@ static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
 void ExtractMessage(char* rxBuffer, char* txBuffer);
 void SetDiv(uint8_t number, uint8_t div);
+void HMC984_WriteRegister(uint32_t data, uint8_t address);
+uint32_t HMC984_ReadRegister(uint8_t address);
 
 uint8_t rxChar;
   uint8_t rxBuffer[BUFFER_SIZE];
@@ -401,7 +403,7 @@ static void MX_TIM6_Init(void)
 
   /* USER CODE END TIM6_Init 1 */
   htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 7499;
+  htim6.Init.Prescaler = 499;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim6.Init.Period = 4999;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -679,6 +681,16 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM6) {
+      if (par.pd.read.val > 0) {
+          par.pd.rval.val = HMC984_ReadRegister((uint8_t)par.pd.reg.val);
+          par.pd.read.val = 0;
+      }
+    }
+}
+
 void HMC984_WriteRegister(uint32_t data, uint8_t address) {
     uint8_t buffer[5];  // 40-bits
     uint8_t chip_address = 0b100;
@@ -698,13 +710,6 @@ void HMC984_WriteRegister(uint32_t data, uint8_t address) {
 
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
 //    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM6) {
-        par.lfpd.read.val ++;
-    }
-}
 }
 
 uint32_t HMC984_ReadRegister(uint8_t address) {
@@ -728,6 +733,39 @@ uint32_t HMC984_ReadRegister(uint8_t address) {
                         ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
 
     return received_data;
+}
+
+void SetDiv(uint8_t number, uint8_t div)
+{
+  GPIO_PinState s0, s1, s2;
+
+  if (div < 2) {
+      div = 1;
+      s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_SET;
+  } else if (div < 4) {
+      div = 2;
+      s0 = GPIO_PIN_RESET; s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_SET;
+  } else if (div < 8) {
+      div = 4;
+      s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_SET;   s2 = GPIO_PIN_RESET;
+  } else if (div < 16) {
+      div = 8;
+      s0 = GPIO_PIN_SET;   s1 = GPIO_PIN_RESET; s2 = GPIO_PIN_RESET;
+  } else {
+      div = 16;
+      s0 = GPIO_PIN_RESET; s1 = GPIO_PIN_RESET; s2 = GPIO_PIN_RESET;
+  }
+
+  if (number == 2) {
+      HAL_GPIO_WritePin(DIV1_S0_GPIO_Port, DIV1_S0_Pin, s0);
+      HAL_GPIO_WritePin(DIV1_S1_GPIO_Port, DIV1_S1_Pin, s1);
+      HAL_GPIO_WritePin(DIV1_S2_GPIO_Port, DIV1_S2_Pin, s2);
+  }
+  if (number == 1) {
+        HAL_GPIO_WritePin(DIV2_S0_GPIO_Port, DIV2_S0_Pin, s0);
+        HAL_GPIO_WritePin(DIV2_S1_GPIO_Port, DIV2_S1_Pin, s1);
+        HAL_GPIO_WritePin(DIV2_S2_GPIO_Port, DIV2_S2_Pin, s2);
+  }  
 }
 
 void ExtractMessage(char* rxBuffer, char* txBuffer)

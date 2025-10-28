@@ -54,7 +54,7 @@ typedef struct {
     value mode;
     oscilator osc;
     oscilator ref;
-    phdet lfpd;
+    phdet pd;
     value save;
     value load;
 } parameters;

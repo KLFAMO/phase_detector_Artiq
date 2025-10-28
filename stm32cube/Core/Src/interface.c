@@ -33,8 +33,8 @@ pointer getPointer(pointer p, char *s)
       pout = (pointer){.p = (void *)&(ptmp->osc), .type = "oscilator"};
     if (strcasecmp(s, "REF") == 0)
       pout = (pointer){.p = (void *)&(ptmp->ref), .type = "oscilator"};
-      if (strcasecmp(s, "LFPD") == 0)
-          pout = (pointer){.p = (void *)&(ptmp->lfpd), .type = "phdet"};
+      if (strcasecmp(s, "PD") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->pd), .type = "phdet"};
     if (strcasecmp(s, "SAVE") == 0)
       pout = (pointer){.p = (void *)&(ptmp->save), .type = "value"};
     if (strcasecmp(s, "LOAD") == 0)
@@ -119,7 +119,7 @@ void setParam(value *p, double val)
 
 void initInterface(void)
 {
-  par.version = 2; // version of parameters structure, increment if structure changes
+  par.version = 3; // version of parameters structure, increment if structure changes
   par.ver = (value){.val = 1, .min = 0, .max = 100};
   par.mode = (value){.val = 0, .min = 0, .max = 0};
   par.save = (value){.val = 0, .min = 0, .max = 1};
@@ -129,6 +129,10 @@ void initInterface(void)
   par.osc.al_sw = (value){.val = 0, .min = 0, .max = 1};
   par.ref.div = (value){.val = 1, .min = 1, .max = 16};
   par.ref.al_sw = (value){.val = 0, .min = 0, .max = 1};
+
+  par.pd.reg = (value){.val = 0, .min = 0, .max = 100};
+  par.pd.rval = (value){.val = 0, .min = 0, .max = 40000095};
+  par.pd.read = (value){.val = 0, .min = 0, .max = 1};
 }
 
 /*------------------------*/
