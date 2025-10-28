@@ -114,8 +114,18 @@ static void MX_TIM2_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
-void HMC984_WriteRegister(uint32_t data, uint8_t address);
-uint32_t HMC984_ReadRegister(uint8_t address);
+void ExtractMessage(char* rxBuffer, char* txBuffer);
+void SetDiv(uint8_t number, uint8_t div);
+
+uint8_t rxChar;
+  uint8_t rxBuffer[BUFFER_SIZE];
+  uint8_t txBuffer[BUFFER_SIZE];
+  uint8_t tmpBuffer[BUFFER_SIZE];
+  uint16_t index = 0;
+  uint8_t helloMsg[] = "\nPhDet>";
+  HAL_StatusTypeDef status;
+  static uint32_t last_cnt = 0;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -211,8 +221,6 @@ int main(void)
 	  	  			  if (index >= BUFFER_SIZE) index = 0;
 	  	  		  }
 	  	  	  }
-    SetDiv(1, par.osc.div.val);
-    SetDiv(2, par.ref.div.val);
 
     /* USER CODE END WHILE */
 
@@ -690,6 +698,13 @@ void HMC984_WriteRegister(uint32_t data, uint8_t address) {
 
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
 //    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM6) {
+        par.lfpd.read.val ++;
+    }
+}
 }
 
 uint32_t HMC984_ReadRegister(uint8_t address) {
@@ -713,6 +728,13 @@ uint32_t HMC984_ReadRegister(uint8_t address) {
                         ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
 
     return received_data;
+}
+
+void ExtractMessage(char* rxBuffer, char* txBuffer)
+{
+    cmd_string_interpret(rxBuffer, txBuffer);
+    txBuffer[BUFFER_SIZE - 1] = '\0';
+    //update_array();
 }
 
 /* USER CODE END 4 */

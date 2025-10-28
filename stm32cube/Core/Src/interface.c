@@ -33,6 +33,8 @@ pointer getPointer(pointer p, char *s)
       pout = (pointer){.p = (void *)&(ptmp->osc), .type = "oscilator"};
     if (strcasecmp(s, "REF") == 0)
       pout = (pointer){.p = (void *)&(ptmp->ref), .type = "oscilator"};
+      if (strcasecmp(s, "LFPD") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->lfpd), .type = "phdet"};
     if (strcasecmp(s, "SAVE") == 0)
       pout = (pointer){.p = (void *)&(ptmp->save), .type = "value"};
     if (strcasecmp(s, "LOAD") == 0)
@@ -48,6 +50,17 @@ pointer getPointer(pointer p, char *s)
         pout = (pointer){.p = (void *)&(ptmp->al_sw), .type = "value"};
       if (strcasecmp(s, "F") == 0)
         pout = (pointer){.p = (void *)&(ptmp->f), .type = "value"};
+    }
+  
+  if (strcmp(p.type, "phdet") == 0)
+    {
+      phdet *ptmp = (phdet *)p.p;
+      if (strcasecmp(s, "REG") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->reg), .type = "value"};
+      if (strcasecmp(s, "RVAL") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->rval), .type = "value"};
+      if (strcasecmp(s, "READ") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->read), .type = "value"};
     }
 
   if (strcmp(p.type, "value") == 0)

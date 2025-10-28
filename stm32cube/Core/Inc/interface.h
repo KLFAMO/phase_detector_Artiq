@@ -41,12 +41,20 @@ typedef struct {
     value f;
 } oscilator;
 
+
+typedef struct {
+    value reg;
+    value rval;
+    value read;
+} phdet;
+
 typedef struct {
     double version;
     value ver;
     value mode;
     oscilator osc;
     oscilator ref;
+    phdet lfpd;
     value save;
     value load;
 } parameters;
