@@ -61,6 +61,10 @@ pointer getPointer(pointer p, char *s)
         pout = (pointer){.p = (void *)&(ptmp->rval), .type = "value"};
       if (strcasecmp(s, "READ") == 0)
         pout = (pointer){.p = (void *)&(ptmp->read), .type = "value"};
+      if (strcasecmp(s, "WRITE") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->write), .type = "value"};
+      if (strcasecmp(s, "WVAL") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->wval), .type = "value"};
     }
 
   if (strcmp(p.type, "value") == 0)
@@ -119,7 +123,7 @@ void setParam(value *p, double val)
 
 void initInterface(void)
 {
-  par.version = 3; // version of parameters structure, increment if structure changes
+  par.version = 4; // version of parameters structure, increment if structure changes
   par.ver = (value){.val = 1, .min = 0, .max = 100};
   par.mode = (value){.val = 0, .min = 0, .max = 0};
   par.save = (value){.val = 0, .min = 0, .max = 1};
@@ -133,6 +137,8 @@ void initInterface(void)
   par.pd.reg = (value){.val = 0, .min = 0, .max = 100};
   par.pd.rval = (value){.val = 0, .min = 0, .max = 40000095};
   par.pd.read = (value){.val = 0, .min = 0, .max = 1};
+  par.pd.write = (value){.val = 0, .min = 0, .max = 1};
+  par.pd.wval = (value){.val = 0, .min = 0, .max = 40000095};
 }
 
 /*------------------------*/

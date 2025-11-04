@@ -46,6 +46,8 @@ typedef struct {
     value reg;
     value rval;
     value read;
+    value write;
+    value wval;
 } phdet;
 
 typedef struct {

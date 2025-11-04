@@ -443,8 +443,11 @@ uint32_t HMC984_ReadRegister(uint8_t address) {
     HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 
     // for some reason received data is shifted 1 bit to the right
-    received_data = ((uint32_t)rx_buffer[0] << 23) | ((uint32_t)rx_buffer[1] << 15) |
-                        ((uint32_t)rx_buffer[2] << 7) | ((uint32_t)rx_buffer[3] >> 1);
+    // received_data = ((uint32_t)rx_buffer[0] << 23) | ((uint32_t)rx_buffer[1] << 15) |
+    //                     ((uint32_t)rx_buffer[2] << 7) | ((uint32_t)rx_buffer[3] >> 1);
+
+    received_data = ((uint32_t)rx_buffer[0] << 22) | ((uint32_t)rx_buffer[1] << 14) |
+                        ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
 
     return received_data;
 }

@@ -636,10 +636,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, DIV2_S1_Pin|DIV2_S2_Pin|DIV2_S0_Pin|DIV1_S2_Pin
-                          |DIV1_S1_Pin|DIV1_S0_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+                          |DIV1_S1_Pin|DIV1_S0_Pin|PHDET_CEN_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
@@ -664,7 +661,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : PHDET_CEN_Pin */
   GPIO_InitStruct.Pin = PHDET_CEN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(PHDET_CEN_GPIO_Port, &GPIO_InitStruct);
 
@@ -688,28 +685,32 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
           par.pd.rval.val = HMC984_ReadRegister((uint8_t)par.pd.reg.val);
           par.pd.read.val = 0;
       }
+      if (par.pd.write.val > 0) {
+          HMC984_WriteRegister((uint32_t)par.pd.wval.val, (uint8_t)par.pd.reg.val);
+          par.pd.write.val = 0;
+      }
     }
 }
 
 void HMC984_WriteRegister(uint32_t data, uint8_t address) {
     uint8_t buffer[5];  // 40-bits
-    uint8_t chip_address = 0b100;
+    uint8_t chip_address = 0b000;
 
     buffer[0] = (data >> 22) & 0xFF; // MSB
     buffer[1] = (data >> 14) & 0xFF;
     buffer[2] = (data >> 6) & 0xFF;
     buffer[3] = (data & 0x3F) << 2; //LSB
     buffer[3] |= (address >> 5) & 0x03;
-    buffer[4] = (address << 3) | chip_address;
+    // buffer[4] = (address << 3) | chip_address;
+    buffer[4] = (address << 3) | (chip_address & 0b111);
 
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
+  //  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
-    // Wyślij dane przez SPI2 (40-bitów w 5 bajtach)
     HAL_SPI_Transmit(&hspi2, buffer, 5, HAL_MAX_DELAY);
 
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+  //  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 }
 
 uint32_t HMC984_ReadRegister(uint8_t address) {
@@ -718,19 +719,23 @@ uint32_t HMC984_ReadRegister(uint8_t address) {
     uint32_t received_data = 0;
 
     // Phase 1: set reg addr to Reg 00h
-    HMC984_WriteRegister(0, address);
+    // HMC984_WriteRegister(0, address);
+    HMC984_WriteRegister(address & 0x7F, 0x00);
 
     // Phase 2: read data
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
+  //  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
     HAL_SPI_TransmitReceive(&hspi2, tx_buffer, rx_buffer, 5, HAL_MAX_DELAY);
 
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_SET);
-//    HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
+  //  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_RESET);
 
-    received_data = ((uint32_t)rx_buffer[0] << 22) | ((uint32_t)rx_buffer[1] << 14) |
-                        ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
+    // received_data = ((uint32_t)rx_buffer[0] << 22) | ((uint32_t)rx_buffer[1] << 14) |
+    //                     ((uint32_t)rx_buffer[2] << 6) | ((uint32_t)rx_buffer[3] >> 2);
+    
+    received_data = ((uint32_t)rx_buffer[0] << 23) | ((uint32_t)rx_buffer[1] << 15) |
+                        ((uint32_t)rx_buffer[2] << 7) | ((uint32_t)rx_buffer[3] >> 1);
 
     return received_data;
 }
