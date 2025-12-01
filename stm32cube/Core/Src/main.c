@@ -47,6 +47,7 @@
 SPI_HandleTypeDef hspi2;
 
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim5;
 TIM_HandleTypeDef htim6;
 
 UART_HandleTypeDef huart4;
@@ -113,6 +114,7 @@ static void MX_USART6_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_SPI2_Init(void);
+static void MX_TIM5_Init(void);
 /* USER CODE BEGIN PFP */
 void ExtractMessage(char* rxBuffer, char* txBuffer);
 void SetDiv(uint8_t number, uint8_t div);
@@ -171,6 +173,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM6_Init();
   MX_SPI2_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
   initInterface();
 
@@ -189,6 +192,7 @@ int main(void)
 
   // Start licznika z zewnętrznym zegarem na ETR (PA0)
   HAL_TIM_Base_Start(&htim2);
+  HAL_TIM_Base_Start(&htim5);
 
   // Start okna 100 ms (przerwania)
   HAL_TIM_Base_Start_IT(&htim6);
@@ -368,7 +372,7 @@ static void MX_TIM2_Init(void)
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_ETRMODE2;
   sClockSourceConfig.ClockPolarity = TIM_CLOCKPOLARITY_NONINVERTED;
   sClockSourceConfig.ClockPrescaler = TIM_CLOCKPRESCALER_DIV1;
-  sClockSourceConfig.ClockFilter = 1;
+  sClockSourceConfig.ClockFilter = 0;
   if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
   {
     Error_Handler();
@@ -382,6 +386,54 @@ static void MX_TIM2_Init(void)
   /* USER CODE BEGIN TIM2_Init 2 */
 
   /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
+  * @brief TIM5 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM5_Init(void)
+{
+
+  /* USER CODE BEGIN TIM5_Init 0 */
+
+  /* USER CODE END TIM5_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM5_Init 1 */
+
+  /* USER CODE END TIM5_Init 1 */
+  htim5.Instance = TIM5;
+  htim5.Init.Prescaler = 0;
+  htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim5.Init.Period = 4294967295;
+  htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_ETRMODE2;
+  sClockSourceConfig.ClockPolarity = TIM_CLOCKPOLARITY_NONINVERTED;
+  sClockSourceConfig.ClockPrescaler = TIM_CLOCKPRESCALER_DIV1;
+  sClockSourceConfig.ClockFilter = 0;
+  if (HAL_TIM_ConfigClockSource(&htim5, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM5_Init 2 */
+
+  /* USER CODE END TIM5_Init 2 */
 
 }
 
@@ -403,9 +455,9 @@ static void MX_TIM6_Init(void)
 
   /* USER CODE END TIM6_Init 1 */
   htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 499;
+  htim6.Init.Prescaler = 75;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 4999;
+  htim6.Init.Period = 1000;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
@@ -641,14 +693,6 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : XVCO_Pin */
-  GPIO_InitStruct.Pin = XVCO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF2_TIM5;
-  HAL_GPIO_Init(XVCO_GPIO_Port, &GPIO_InitStruct);
-
   /*Configure GPIO pins : DIV2_S1_Pin DIV2_S2_Pin DIV2_S0_Pin DIV1_S2_Pin
                            DIV1_S1_Pin DIV1_S0_Pin */
   GPIO_InitStruct.Pin = DIV2_S1_Pin|DIV2_S2_Pin|DIV2_S0_Pin|DIV1_S2_Pin
@@ -681,6 +725,16 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM6) {
+
+      uint32_t cnt_ref = __HAL_TIM_GET_COUNTER(&htim2);
+    __HAL_TIM_SET_COUNTER(&htim2, 0);
+
+    uint32_t cnt_osc = __HAL_TIM_GET_COUNTER(&htim5);
+    __HAL_TIM_SET_COUNTER(&htim5, 0);
+
+    par.ref.f.val = (double) cnt_ref;
+    par.osc.f.val = (double) cnt_osc;
+
       if (par.pd.read.val > 0) {
           par.pd.rval.val = HMC984_ReadRegister((uint8_t)par.pd.reg.val);
           par.pd.read.val = 0;
@@ -702,7 +756,7 @@ void HMC984_WriteRegister(uint32_t data, uint8_t address) {
     buffer[3] = (data & 0x3F) << 2; //LSB
     buffer[3] |= (address >> 5) & 0x03;
     // buffer[4] = (address << 3) | chip_address;
-    buffer[4] = (address << 3) | (chip_address & 0b111);
+    buffer[4] = (address << 3) | (chip_address & 0b100);
 
   //  HAL_GPIO_WritePin(PHDET_CEN_GPIO_Port, PHDET_CEN_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(PHDET_NSS_GPIO_Port, PHDET_NSS_Pin, GPIO_PIN_RESET);
