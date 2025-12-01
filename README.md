@@ -47,3 +47,13 @@ Detailed documentation, including schematics, source code, and configuration ins
 `WV` - value to write 
 
 `ADDR` - register address to be red or written
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+
+## Acknowledgments
+This work has received funding from the European Partnership on Metrology, co-financed by the European Union’s Horizon Europe Research and Innovation Programme and by the Participating States, under grant number 22IEM01 TOCK.
+
+![badge](figures/Acknowledgement%20badge.png)
