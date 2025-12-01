@@ -25,80 +25,77 @@ pointer getPointer(pointer p, char *s)
   if (strcmp(p.type, "parameters") == 0)
   {
     parameters *ptmp = (parameters *)p.p;
-    if (strcmp(s, "ADC") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->adc), .type = "adc"};
-    if (strcmp(s, "DAC") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->dac), .type = "dac"};
+    if (strcasecmp(s, "VER") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->ver), .type = "value"};
+    if (strcasecmp(s, "MODE") == 0)
+	    pout = (pointer){.p = (void *)&(ptmp->mode), .type = "value"};
+    if (strcasecmp(s, "OSC") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->osc), .type = "oscilator"};
+    if (strcasecmp(s, "REF") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->ref), .type = "oscilator"};
+      if (strcasecmp(s, "PD") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->pd), .type = "phdet"};
+    if (strcasecmp(s, "SAVE") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->save), .type = "value"};
+    if (strcasecmp(s, "LOAD") == 0)
+      pout = (pointer){.p = (void *)&(ptmp->load), .type = "value"};
   }
 
-  if (strcmp(p.type, "adc") == 0)
-  {
-    sadc *ptmp = (sadc *)p.p;
-    if (strcmp(s, "CH1") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->ch1), .type = "adcchannel"};
-    if (strcmp(s, "CH2") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->ch2), .type = "adcchannel"};
-  }
-  if (strcmp(p.type, "adcchannel") == 0)
-  {
-    sadcchannel *ptmp = (sadcchannel *)p.p;
-    if (strcmp(s, "RAW") == 0)
-          pout = (pointer){.p = (void *)&(ptmp->raw), .type = "value"};
-    if (strcmp(s, "VOLT") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->volt), .type = "value"};
-    if (strcmp(s, "AVR") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->avr), .type = "value"};
-    if (strcmp(s, "CORON") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->coron), .type = "value"};
-    if (strcmp(s, "CORFACTOR") == 0)
-      pout = (pointer){.p = (void *)&(ptmp->corfactor), .type = "value"};
-  }
-
-  if (strcmp(p.type, "dac") == 0)
+  if (strcmp(p.type, "oscilator") == 0)
     {
-      sdac *ptmp = (sdac *)p.p;
-      if (strcmp(s, "CH1") == 0)
-        pout = (pointer){.p = (void *)&(ptmp->ch1), .type = "dacchannel"};
+      oscilator *ptmp = (oscilator *)p.p;
+      if (strcasecmp(s, "DIV") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->div), .type = "value"};
+      if (strcasecmp(s, "AL_SW") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->al_sw), .type = "value"};
+      if (strcasecmp(s, "F") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->f), .type = "value"};
     }
-
-  if (strcmp(p.type, "dacchannel") == 0)
+  
+  if (strcmp(p.type, "phdet") == 0)
     {
-      sdacchannel *ptmp = (sdacchannel *)p.p;
-      if (strcmp(s, "RAW") == 0)
-            pout = (pointer){.p = (void *)&(ptmp->raw), .type = "value"};
-      if (strcmp(s, "VOLT") == 0)
-        pout = (pointer){.p = (void *)&(ptmp->volt), .type = "value"};
+      phdet *ptmp = (phdet *)p.p;
+      if (strcasecmp(s, "REG") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->reg), .type = "value"};
+      if (strcasecmp(s, "RVAL") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->rval), .type = "value"};
+      if (strcasecmp(s, "READ") == 0)
+        pout = (pointer){.p = (void *)&(ptmp->read), .type = "value"};
+      if (strcasecmp(s, "WRITE") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->write), .type = "value"};
+      if (strcasecmp(s, "WVAL") == 0)
+          pout = (pointer){.p = (void *)&(ptmp->wval), .type = "value"};
     }
 
   if (strcmp(p.type, "value") == 0)
   {
     value *ptmp = (value *)p.p;
-    if (strcmp(s, "VAL") == 0)
+    if (strcasecmp(s, "VAL") == 0)
       pout = (pointer){.p = (void *)&(ptmp->val), .type = "double"};
-    if (strcmp(s, "MIN") == 0)
+    if (strcasecmp(s, "MIN") == 0)
       pout = (pointer){.p = (void *)&(ptmp->min), .type = "double"};
-    if (strcmp(s, "MAX") == 0)
+    if (strcasecmp(s, "MAX") == 0)
       pout = (pointer){.p = (void *)&(ptmp->max), .type = "double"};
-    if (strcmp(s, "TABON") == 0)
+    if (strcasecmp(s, "TABON") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabon), .type = "ison"};
-    if (strcmp(s, "MES") == 0)
+    if (strcasecmp(s, "MES") == 0)
       pout = (pointer){.p = (void *)&(ptmp->mes), .type = "mestab"};
   }
 
   if (strcmp(p.type, "mestab") == 0)
   {
     mestab *ptmp = (mestab *)p.p;
-    if (strcmp(s, "SIZE") == 0)
+    if (strcasecmp(s, "SIZE") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabsize), .type = "int"};
-    if (strcmp(s, "COUNT") == 0)
+    if (strcasecmp(s, "COUNT") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabcount), .type = "int"};
-    if (strcmp(s, "POS") == 0)
+    if (strcasecmp(s, "POS") == 0)
       pout = (pointer){.p = (void *)&(ptmp->tabpos), .type = "int"};
   }
   if (strcmp(p.type, "ison") == 0)
   {
     ison *ptmp = (ison *)p.p;
-    if (strcmp(s, "IS") == 0)
+    if (strcasecmp(s, "IS") == 0)
       pout = (pointer){.p = (void *)&(ptmp->is), .type = "int"};
   }
   return pout;
@@ -126,11 +123,22 @@ void setParam(value *p, double val)
 
 void initInterface(void)
 {
-  par.adc.ch1.avr = (value){.val = 50, .min = 1, .max = 100};
-  par.adc.ch1.volt = (value){.val = 0, .min = 0, .max = 41000};
-  par.adc.ch1.coron = (value){.val = 0, .min = 0, .max = 1};
-  par.adc.ch1.corfactor = (value){.val = 1, .min = 0, .max = 100};
-  par.dac.ch1.volt = (value){.val = 0, .min = 0, .max = 5};
+  par.version = 4; // version of parameters structure, increment if structure changes
+  par.ver = (value){.val = 1, .min = 0, .max = 100};
+  par.mode = (value){.val = 0, .min = 0, .max = 0};
+  par.save = (value){.val = 0, .min = 0, .max = 1};
+  par.load = (value){.val = 0, .min = 0, .max = 1};
+
+  par.osc.div = (value){.val = 1, .min = 1, .max = 16};
+  par.osc.al_sw = (value){.val = 0, .min = 0, .max = 1};
+  par.ref.div = (value){.val = 1, .min = 1, .max = 16};
+  par.ref.al_sw = (value){.val = 0, .min = 0, .max = 1};
+
+  par.pd.reg = (value){.val = 0, .min = 0, .max = 100};
+  par.pd.rval = (value){.val = 0, .min = 0, .max = 40000095};
+  par.pd.read = (value){.val = 0, .min = 0, .max = 1};
+  par.pd.write = (value){.val = 0, .min = 0, .max = 1};
+  par.pd.wval = (value){.val = 0, .min = 0, .max = 40000095};
 }
 
 /*------------------------*/
@@ -143,7 +151,7 @@ void initInterface(void)
 int cmd_string_interpret(char *sin, char *sout)
 {
   char scmd[100];
-  char ssend[2300];
+  char ssend[100];
   int i = 0, iscmd = 0, sinlen = 0;
   strcpy(ssend, "");
   sinlen = strlen(sin);
@@ -237,7 +245,7 @@ int cmd_interpret(char *sin, char *ssend)
 
   if (sarg[0] == '?')
   {
-	  strcat(ssend, "*?*\n");
+//	  strcat(ssend, "*?*\n");
     if (strcmp(parg.type, "double") == 0){
     	//strcat(ssend, "*double*\n");
     	ftostr(stmp, *((double *)(parg.p)));
@@ -348,32 +356,81 @@ int rmwhite(char *str)
   return 0;
 }
 
-double atofmy(char *str)
-{
-  double out;
-  int isdot = 0, i, len, dotpos = 0, inttemp;
-  len = strlen(str);
-  if (str[len - 1] == '\n')
-    len = len - 1;
-  for (i = 0; i < len; i++)
-  {
-    if (str[i] == '.')
-    {
-      if (isdot == 1)
-        return 0;
-      isdot = 1;
-      dotpos = i;
+//double atofmy(char *str)
+//{
+//  double out;
+//  int isdot = 0, i, len, dotpos = 0, inttemp;
+//  len = strlen(str);
+//  if (str[len - 1] == '\n')
+//    len = len - 1;
+//  for (i = 0; i < len; i++)
+//  {
+//    if (str[i] == '.')
+//    {
+//      if (isdot == 1)
+//        return 0;
+//      isdot = 1;
+//      dotpos = i;
+//    }
+//    if (isdot == 1)
+//    {
+//      str[i] = str[i + 1];
+//    }
+//  }
+//  inttemp = atoi(str);
+//  out = (double)inttemp;
+//  if (isdot)
+//    out = out * pow(10, -1 * (len - dotpos - 1));
+//  return out;
+//}
+
+
+double atofmy(char *str) {
+    double result = 0.0;  // result
+    double fraction_part = 0.0;
+    int sign = 1;
+    int i = 0;
+    int is_fraction = 0;
+    double divisor = 10.0;
+
+    // cut on the first white space
+    while (str[i] == ' ' || str[i] == '\t') {
+        i++;
     }
-    if (isdot == 1)
-    {
-      str[i] = str[i + 1];
+
+    // check sign
+    if (str[i] == '-') {
+        sign = -1;
+        i++;
+    } else if (str[i] == '+') {
+        i++;
     }
-  }
-  inttemp = atoi(str);
-  out = (double)inttemp;
-  if (isdot)
-    out = out * pow(10, -1 * (len - dotpos - 1));
-  return out;
+
+    // integer part
+    while (str[i] != '\0') {
+        if (str[i] == '.') {
+            // start fractional part
+            is_fraction = 1;
+            i++;
+            continue;
+        }
+
+        // Sprawdzanie, czy mamy cyfrďż˝
+        if (str[i] >= '0' && str[i] <= '9') {
+            if (!is_fraction) {
+                result = result * 10 + (str[i] - '0');
+            } else {
+                fraction_part += (str[i] - '0') / divisor;
+                divisor *= 10.0;
+            }
+        } else {
+            break;
+        }
+        i++;
+    }
+    result += fraction_part;
+    result *= sign;
+    return result;
 }
 
 int ftostr(char *str, double val)
@@ -394,8 +451,8 @@ int ftostr(char *str, double val)
     istr++;
     val = -1 * val;
   }
-  factor = 100000000;
-  while (factor > 0.00000001 && factor > val)
+  factor = 10000000000000000;
+  while (factor > 0.000000000001 && factor > val)
     factor = factor / 10;
   order = (int)log10(factor);
   if (order < 0)
@@ -411,7 +468,7 @@ int ftostr(char *str, double val)
       istr++;
     }
   }
-  for (j = 0; j < 10; j++)
+  for (j = 0; j < 15; j++)
   {
     for (i = 9; i >= 0; i--)
     {

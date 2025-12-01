@@ -34,3 +34,26 @@ The phase detector is suitable for a variety of applications, including:
 ## Documentation
 
 Detailed documentation, including schematics, source code, and configuration instructions, will be provided in future releases of the repository.
+
+
+## commands
+
+`R 1` - read register from `ADDR`, after reading `R` is set to 0
+
+`W 1` - write to register of address `ADDR`, after writing `W` is set to 0
+
+`RV` - red value
+
+`WV` - value to write 
+
+`ADDR` - register address to be red or written
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+
+## Acknowledgments
+This work has received funding from the European Partnership on Metrology, co-financed by the European Union’s Horizon Europe Research and Innovation Programme and by the Participating States, under grant number 22IEM01 TOCK.
+
+![badge](figures/Acknowledgement%20badge.png)

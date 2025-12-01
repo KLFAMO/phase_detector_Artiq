@@ -36,32 +36,29 @@ typedef struct {
 } value;
 
 typedef struct {
-	value raw;
-    value volt;
-    value avr;
-    value coron;
-    value corfactor;
-}sadcchannel;
-
-typedef struct{
-    sadcchannel ch1;
-    sadcchannel ch2;
-} sadc;
-
-typedef struct {
-	value raw;
-    value volt;
-}sdacchannel;
-
-typedef struct{
-	sdacchannel ch1;
-} sdac;
-
+    value div;
+    value al_sw;
+    value f;
+} oscilator;
 
 
 typedef struct {
-    sadc adc;
-    sdac dac;
+    value reg;
+    value rval;
+    value read;
+    value write;
+    value wval;
+} phdet;
+
+typedef struct {
+    double version;
+    value ver;
+    value mode;
+    oscilator osc;
+    oscilator ref;
+    phdet pd;
+    value save;
+    value load;
 } parameters;
 
 pointer getPointer(pointer,char * );
